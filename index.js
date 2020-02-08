@@ -1,7 +1,6 @@
-require('dotenv').config()
-
 const express = require('express')
 const bodyParser = require("body-parser");
+const { pool } = require('./config')
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
@@ -48,6 +47,16 @@ app.post('/messages', (req, res) => {
 
 app.get('/messages', (req, res) => {
   res.send(JSON.stringify(chats))
+})
+
+// TODO: remove before publishing (just for testing locally)
+app.get('/users', (req, res) => {
+  pool.query('SELECT * FROM users', (error, results) => {
+    if (error) {
+      throw error
+    }
+    res.status(200).json(results.rows)
+  })
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

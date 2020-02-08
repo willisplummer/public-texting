@@ -16,6 +16,7 @@
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
+    "pg": "^7.18.1",
     "socket.io": "^2.3.0",
     "twilio": "^3.39.4",
     "uglify-js": "^3.7.7"
