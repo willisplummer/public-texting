@@ -28,8 +28,12 @@ const getConversationByParticipantId = (userId) =>
   pool.query(
     ```
     SELECT * FROM conversations
-    WHERE first_user_id = 1
-      OR second_user_id = 1
+    JOIN users AS recipient
+      ON (recipient.id = conversations.first_user_id
+          OR recipient.id = conversations.first_user_id)
+        AND recipient.id != $1
+    WHERE first_user_id = $1
+      OR second_user_id = $1
     ```,
     [userId]
   ).then(results => results.rows[0])
