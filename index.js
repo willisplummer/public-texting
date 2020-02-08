@@ -15,9 +15,6 @@ const port = 3000
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-const users = { [willisNumber]: 'Willis', [luizaNumber]: 'Luiza' }
-const chats = []
-
 const getUserByPhoneNumber = (phoneNumber) =>
   pool.query(
     "SELECT * FROM users WHERE phone_number = $1",
@@ -26,15 +23,7 @@ const getUserByPhoneNumber = (phoneNumber) =>
 
 const getConversationByParticipantId = (userId) =>
   pool.query(
-    ```
-    SELECT * FROM conversations
-    JOIN users AS recipient
-      ON (recipient.id = conversations.first_user_id
-          OR recipient.id = conversations.second_user_id)
-        AND recipient.id != $1
-    WHERE first_user_id = $1
-      OR second_user_id = $1
-    ```,
+    "SELECT conversations.*, recipient.phone_number AS recipient_phone_number FROM conversations JOIN users AS recipient ON (recipient.id = conversations.first_user_id OR recipient.id = conversations.second_user_id) AND recipient.id != $1 WHERE first_user_id = $1 OR second_user_id = $1",
     [userId]
   ).then(results => results.rows[0])
 
@@ -65,19 +54,15 @@ app.post('/messages', async (req, res) => {
     const conversation = await getConversationByParticipantId(fromUser.id)
     console.log(conversation)
 
-    // TODO
-    const proxyToNumber = Object.keys(users).filter(x => x != fromNumber)[0]
-
     // write to memory
     await writeMessage(fromUser, conversation, msgBody)
-    chats.push({ from: fromUser, body: msgBody })
 
     // proxy number to other conversation participant
     twilioClient.messages.create({
       body: msgBody,
-      to: proxyToNumber,
-      from: conversation.twilio_number
-    })
+      to: conversation.recipient_phone_number,
+      from: conversation.twilio_phone_number
+    }).catch(e => console.log(e))
   }
 
   res.send('<Response></Response>');
