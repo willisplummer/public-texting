@@ -7,14 +7,16 @@ const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const twilioClient = require('twilio')(accountSid, authToken);
 
+const twilioNumber = process.env.TWILIO_PHONE;
+const willisNumber = process.env.WILLIS_PHONE;
+const luizaNumber = process.env.LUIZA_PHONE;
+
 const app = express()
 const port = 3000
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-const twilioNumber = '+18163987214'
-
-const users = { '+15412618972': 'Willis', '+13475451506': 'Luiza' }
+const users = { [willisNumber]: 'Willis', [luizaNumber]: 'Luiza' }
 const chats = []
 
 app.post('/messages', (req, res) => {
