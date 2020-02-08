@@ -30,7 +30,7 @@ const getConversationByParticipantId = (userId) =>
     SELECT * FROM conversations
     JOIN users AS recipient
       ON (recipient.id = conversations.first_user_id
-          OR recipient.id = conversations.first_user_id)
+          OR recipient.id = conversations.second_user_id)
         AND recipient.id != $1
     WHERE first_user_id = $1
       OR second_user_id = $1
