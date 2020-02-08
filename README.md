@@ -12,7 +12,6 @@ create a public record of a text convo proxy'd through twilio
 
 ## Todos
 
-- add a database
-- add the concept of a conversation (dont hardcode it to luiza and willis)
+- fix the way that the number to proxy a message to is determined (on line ~60)
 - create a simple html representation of a conversation
-- expose a frontend for creating a new conversation
+- expose a frontend for creating a new conversation (on creation, twilio needs to text both participants so that they know what number to text)
