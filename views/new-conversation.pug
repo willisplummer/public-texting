@@ -1,0 +1,16 @@
+html
+  head
+    title Create a new conversation
+  body
+    h1 Create a new conversation
+    form(action='/conversations', method='POST')
+      p
+        | first user name: 
+        input(type='text', name='first_user_name', value='')
+        | first user phone number: 
+        input(type='text', name='first_user_phone_number', value='')
+        | second user name: 
+        input(type='text', name='second_user_name', value='')
+        | second user phone number: 
+        input(type='text', name='second_user_phone_numbers', value='')
+      input(type='submit', value='Submit')
