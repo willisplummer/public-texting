@@ -1,0 +1,8 @@
+html
+  head
+    title= "CONVERSATION BETWEEN TWO PEOPLE"
+  body
+    h1= "CONVERSATION BETWEEN TWO PEOPLE"
+  ul
+    each msg in messages
+      li #{msg.sender_id}: #{msg.body}

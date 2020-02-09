@@ -12,6 +12,9 @@ const port = process.env.PORT || 3000
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.set('views', './views')
+app.set('view engine', 'pug')
+
 const getUsers = () =>
   pool.query('SELECT * FROM users')
     .then(results => results.rows)
@@ -39,7 +42,7 @@ const writeMessage = (fromUser, conversation, msgBody) =>
 
 const getMessages = (conversationId) =>
   pool.query(
-    'SELECT * FROM messages WHERE conversation_id = $1',
+    'SELECT * FROM messages WHERE conversation_id = $1 ORDER BY created_at DESC',
     [conversationId]
   ).then(results => results.rows)
   .catch(e => console.error(e))
@@ -76,8 +79,7 @@ app.post('/messages', async (req, res) => {
 app.get('/messages/:conversationId', async (req, res) => {
   const conversationId = req.params.conversationId
   const messages = await getMessages(conversationId)
-  console.log(messages)
-  res.send(JSON.stringify(messages))
+  res.render('index', { messages })
 })
 
 // TODO: remove before publishing (just for testing locally)
@@ -89,7 +91,6 @@ app.get('/users', async (req, res) => {
 })
 
 app.get('/', (req, res) => {
-  console.log('hello world')
   res.sendStatus(200)
 })
 
