@@ -11,6 +11,11 @@ const port = 3000
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+const getUsers = () =>
+  pool.query('SELECT * FROM users')
+    .then(results => results.rows)
+    .catch(e => console.error(e))
+
 const getUserByPhoneNumber = (phoneNumber) =>
   pool.query(
     "SELECT * FROM users WHERE phone_number = $1",
@@ -75,10 +80,11 @@ app.get('/messages/:conversationId', async (req, res) => {
 })
 
 // TODO: remove before publishing (just for testing locally)
-app.get('/users', (req, res) => {
-  pool.query('SELECT * FROM users')
-    .then(res.status(200).json(results.rows))
-    .catch(e => console.error(e))
+app.get('/users', async (req, res) => {
+  console.log('get users')
+  const users = await getUsers()
+
+  res.send(JSON.stringify(users))
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
