@@ -15,6 +15,11 @@ app.use(bodyParser.json());
 app.set('views', './views')
 app.set('view engine', 'pug')
 
+const getConversations = () =>
+  pool.query('SELECT conversations.id, first_participant.name as first_user_name, second_participant.name as second_user_name FROM conversations JOIN users AS first_participant ON conversations.first_user_id = first_participant.id JOIN users AS second_participant ON conversations.second_user_id = second_participant.id')
+    .then(results => results.rows)
+    .catch(e => console.error(e))
+
 const getUsers = () =>
   pool.query('SELECT * FROM users')
     .then(results => results.rows)
@@ -83,13 +88,17 @@ app.post('/messages', async (req, res) => {
   res.send('<Response></Response>');
 })
 
-app.get('/messages/:conversationId', async (req, res) => {
+app.get('/conversations/new', (req, res) => {
+  res.render('new-conversation')
+})
+
+app.get('/conversations/:conversationId', async (req, res) => {
   const conversationId = req.params.conversationId
   const messages = await getMessages(conversationId)
 
   const participants = await getConversationParticipants(conversationId)
 
-  res.render('index', { messages, participants: Object.values(participants) })
+  res.render('show-conversation', { messages, participants: Object.values(participants) })
 })
 
 // TODO: remove before publishing (just for testing locally)
@@ -98,10 +107,6 @@ app.get('/users', async (req, res) => {
   const users = await getUsers()
 
   res.send(JSON.stringify(users))
-})
-
-app.get('/conversations/new', (req, res) => {
-  res.render('new-conversation')
 })
 
 app.post('/conversations', async (req, res) => {
@@ -153,7 +158,7 @@ app.post('/conversations', async (req, res) => {
     ).then(res => res.rows[0].id)
 
 
-    const newThreadMsg = `This is your new thread for public texting. You can see everything at https://public-texting.herokuapp.com/messages/${conversationId}`
+    const newThreadMsg = `This is your new thread for public texting. You can see everything at https://public-texting.herokuapp.com/conversations/${conversationId}`
 
     twilioClient.messages.create({
       body: newThreadMsg,
@@ -179,8 +184,20 @@ app.post('/conversations', async (req, res) => {
   }
 })
 
-app.get('/', (req, res) => {
-  res.sendStatus(200)
+app.get('/', async (req, res) => {
+  const conversationsRes = await getConversations()
+
+  console.log(conversationsRes)
+  const conversations = conversationsRes.map(convo => {
+    return {
+      title: 'conversation btwn ' + convo.first_user_name + ' and ' + convo.second_user_name,
+      path: '/conversations/' + convo.id
+    }
+  })
+
+  console.log(conversations)
+
+  res.render('index', { conversations })
 })
 
 app.listen(port, () =>

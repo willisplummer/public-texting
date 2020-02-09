@@ -1,8 +1,15 @@
 html
   head
-    title CONVERSATION BETWEEN #{participants[0].toUpperCase()} AND #{participants[1].toUpperCase()}
+    title SOME PUBLIC TEXT CONVOS
   body
-    h1 CONVERSATION BETWEEN #{participants[0].toUpperCase()} AND #{participants[1].toUpperCase()}
+    h1 SOME PUBLIC TEXT CONVOS
   ul
-    each msg in messages
-      li #{msg.sender_name}: #{msg.body}
+    each conversation in conversations
+      li
+        a(href=conversation.path) #{conversation.title}
+  a(href='/conversations/new') start a conversation
+  br
+  br
+  br
+  br
+  p (by willis plummer and luiza dale)
