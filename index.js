@@ -88,7 +88,7 @@ app.get('/users', async (req, res) => {
   res.send(JSON.stringify(users))
 })
 
-app.get('/', (res) => {
+app.get('/', (req, res) => {
   console.log('hello world')
   res.sendStatus(200)
 })
