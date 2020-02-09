@@ -27,6 +27,13 @@ const getUserByPhoneNumber = (phoneNumber) =>
     .then(results => results.rows[0])
     .catch(e => console.error(e))
 
+const getConversationParticipants = (conversationId) =>
+  pool.query(
+    "SELECT first_participant.name as first_user_name, second_participant.name as second_user_name FROM conversations JOIN users AS first_participant ON conversations.first_user_id = first_participant.id JOIN users AS second_participant ON conversations.second_user_id = second_participant.id WHERE conversations.id = $1",
+    [conversationId]
+  ).then(results => results.rows[0])
+  .catch(e => console.error(e))
+
 const getConversationByParticipantId = (userId) =>
   pool.query(
     "SELECT conversations.*, recipient.phone_number AS recipient_phone_number FROM conversations JOIN users AS recipient ON (recipient.id = conversations.first_user_id OR recipient.id = conversations.second_user_id) AND recipient.id != $1 WHERE first_user_id = $1 OR second_user_id = $1",
@@ -42,7 +49,7 @@ const writeMessage = (fromUser, conversation, msgBody) =>
 
 const getMessages = (conversationId) =>
   pool.query(
-    'SELECT * FROM messages WHERE conversation_id = $1 ORDER BY created_at DESC',
+    'SELECT messages.*, users.name AS sender_name FROM messages JOIN users ON users.id = messages.sender_id WHERE conversation_id = $1 ORDER BY created_at ASC',
     [conversationId]
   ).then(results => results.rows)
   .catch(e => console.error(e))
@@ -79,7 +86,10 @@ app.post('/messages', async (req, res) => {
 app.get('/messages/:conversationId', async (req, res) => {
   const conversationId = req.params.conversationId
   const messages = await getMessages(conversationId)
-  res.render('index', { messages })
+
+  const participants = await getConversationParticipants(conversationId)
+
+  res.render('index', { messages, participants: Object.values(participants) })
 })
 
 // TODO: remove before publishing (just for testing locally)

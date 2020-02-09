@@ -1,8 +1,8 @@
 html
   head
-    title= "CONVERSATION BETWEEN TWO PEOPLE"
+    title CONVERSATION BETWEEN #{participants[0].toUpperCase()} AND #{participants[1].toUpperCase()}
   body
-    h1= "CONVERSATION BETWEEN TWO PEOPLE"
+    h1 CONVERSATION BETWEEN #{participants[0].toUpperCase()} AND #{participants[1].toUpperCase()}
   ul
     each msg in messages
-      li #{msg.sender_id}: #{msg.body}
+      li #{msg.sender_name}: #{msg.body}
