@@ -103,7 +103,6 @@ app.get('/conversations/:conversationId', async (req, res) => {
 
 // TODO: remove before publishing (just for testing locally)
 app.get('/users', async (req, res) => {
-  console.log('get users')
   const users = await getUsers()
 
   res.send(JSON.stringify(users))
@@ -128,13 +127,6 @@ app.post('/conversations', async (req, res) => {
     }
     return newNum
   }
-
-  console.log(
-    first_user_name,
-    first_user_phone_number,
-    second_user_name,
-    second_user_phone_number
-  )
 
   const client = await pool.connect()
 
@@ -187,15 +179,12 @@ app.post('/conversations', async (req, res) => {
 app.get('/', async (req, res) => {
   const conversationsRes = await getConversations()
 
-  console.log(conversationsRes)
   const conversations = conversationsRes.map(convo => {
     return {
       title: 'conversation btwn ' + convo.first_user_name + ' and ' + convo.second_user_name,
       path: '/conversations/' + convo.id
     }
   })
-
-  console.log(conversations)
 
   res.render('index', { conversations })
 })
