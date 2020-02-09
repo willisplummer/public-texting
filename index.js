@@ -109,13 +109,20 @@ app.post('/conversations', async (req, res) => {
 
   console.log(req.body)
 
-
   const {
     first_user_name,
     first_user_phone_number,
     second_user_name,
     second_user_phone_number
   } = req.body
+
+  const cleanupNumber = str => {
+    const newNum = '+' + str.replace(/\D/g,'')
+    if (newNum.length != 12) {
+      throw "invalid phone number"
+    }
+    return newNum
+  }
 
   console.log(
     first_user_name,
@@ -131,12 +138,12 @@ app.post('/conversations', async (req, res) => {
     const createUserText = 'INSERT INTO users(name, phone_number) VALUES($1, $2) RETURNING *'
     const firstUser = await client.query(
       createUserText,
-      [req.body.first_user_name, req.body.first_user_phone_number]
+      [first_user_name, cleanupNumber(first_user_phone_number)]
     ).then(res => res.rows[0])
 
     const secondUser = await client.query(
       createUserText,
-      [req.body.second_user_name, req.body.second_user_phone_number]
+      [second_user_name, cleanupNumber(second_user_phone_number)]
     ).then(res => res.rows[0])
 
     const insertConversationText = 'INSERT INTO conversations(first_user_id, second_user_id, twilio_phone_number) VALUES ($1, $2, $3) RETURNING id'
@@ -145,7 +152,6 @@ app.post('/conversations', async (req, res) => {
       [firstUser.id, secondUser.id, HARDCODED_TWILIO_NUMBER]
     ).then(res => res.rows[0].id)
 
-    await client.query('COMMIT')
 
     const newThreadMsg = `This is your new thread for public texting. You can see everything at https://public-texting.herokuapp.com/messages/${conversationId}`
 
@@ -153,13 +159,15 @@ app.post('/conversations', async (req, res) => {
       body: newThreadMsg,
       to: firstUser.phone_number,
       from: HARDCODED_TWILIO_NUMBER
-    }).catch(e => console.log(e))
+    }).catch(e => { throw e })
   
     twilioClient.messages.create({
       body: newThreadMsg,
       to: secondUser.phone_number,
       from: HARDCODED_TWILIO_NUMBER
-    }).catch(e => console.log(e))
+    }).catch(e => { throw e })
+
+    await client.query('COMMIT')
   
     res.sendStatus(200)
   } catch (e) {
