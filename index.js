@@ -16,7 +16,7 @@ app.set('views', './views')
 app.set('view engine', 'pug')
 
 const getConversations = () =>
-  pool.query('SELECT conversations.id, first_participant.name as first_user_name, second_participant.name as second_user_name FROM conversations JOIN users AS first_participant ON conversations.first_user_id = first_participant.id JOIN users AS second_participant ON conversations.second_user_id = second_participant.id')
+  pool.query('SELECT conversations.id, conversations.created_at, first_participant.name as first_user_name, second_participant.name as second_user_name FROM conversations JOIN users AS first_participant ON conversations.first_user_id = first_participant.id JOIN users AS second_participant ON conversations.second_user_id = second_participant.id ORDER BY conversations.created_at DESC')
     .then(results => results.rows)
     .catch(e => console.error(e))
 
