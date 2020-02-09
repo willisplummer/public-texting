@@ -88,4 +88,6 @@ app.get('/users', async (req, res) => {
   res.send(JSON.stringify(users))
 })
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(port, () =>
+  console.log(`Example app listening on port ${port}!`)
+)
