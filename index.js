@@ -79,7 +79,6 @@ app.get('/users', (req, res) => {
   pool.query('SELECT * FROM users')
     .then(res.status(200).json(results.rows))
     .catch(e => console.error(e))
-  })
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
