@@ -107,19 +107,36 @@ app.get('/conversations/new', (req, res) => {
 app.post('/conversations', async (req, res) => {
   const HARDCODED_TWILIO_NUMBER = '+18163987214'
 
+  console.log(req.body)
+
+
+  const {
+    first_user_name,
+    first_user_phone_number,
+    second_user_name,
+    second_user_phone_number
+  } = req.body
+
+  console.log(
+    first_user_name,
+    first_user_phone_number,
+    second_user_name,
+    second_user_phone_number
+  )
+
   const client = await pool.connect()
 
   try {
     await client.query('BEGIN')
-    const createUserText = 'INSERT INTO users(name, phone_number) VALUES($1, $2) RETURNING id'
+    const createUserText = 'INSERT INTO users(name, phone_number) VALUES($1, $2) RETURNING *'
     const firstUser = await client.query(
       createUserText,
-      [req.first_user_name, req.first_user_phone_number]
+      [req.body.first_user_name, req.body.first_user_phone_number]
     ).then(res => res.rows[0])
 
     const secondUser = await client.query(
       createUserText,
-      [req.second_user_name, req.second_user_phone_number]
+      [req.body.second_user_name, req.body.second_user_phone_number]
     ).then(res => res.rows[0])
 
     const insertConversationText = 'INSERT INTO conversations(first_user_id, second_user_id, twilio_phone_number) VALUES ($1, $2, $3) RETURNING id'
@@ -129,28 +146,29 @@ app.post('/conversations', async (req, res) => {
     ).then(res => res.rows[0].id)
 
     await client.query('COMMIT')
+
+    const newThreadMsg = `This is your new thread for public texting. You can see everything at https://public-texting.herokuapp.com/messages/${conversationId}`
+
+    twilioClient.messages.create({
+      body: newThreadMsg,
+      to: firstUser.phone_number,
+      from: HARDCODED_TWILIO_NUMBER
+    }).catch(e => console.log(e))
+  
+    twilioClient.messages.create({
+      body: newThreadMsg,
+      to: secondUser.phone_number,
+      from: HARDCODED_TWILIO_NUMBER
+    }).catch(e => console.log(e))
+  
+    res.sendStatus(200)
   } catch (e) {
     await client.query('ROLLBACK')
+    console.log(e)
     throw e
   } finally {
     client.release()
   }
-
-  const newThreadMsg = `This is your new thread for public texting. You can see everything at https://public-texting.herokuapp.com/messages/${conversationId}`
-
-  twilioClient.messages.create({
-    body: newThreadMsg,
-    to: firstUser.phone_number,
-    from: HARDCODED_TWILIO_NUMBER
-  }).catch(e => console.log(e))
-
-  twilioClient.messages.create({
-    body: newThreadMsg,
-    to: secondUser.phone_number,
-    from: HARDCODED_TWILIO_NUMBER
-  }).catch(e => console.log(e))
-
-  res.sendStatus(200)
 })
 
 app.get('/', (req, res) => {
