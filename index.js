@@ -16,12 +16,14 @@ const getUserByPhoneNumber = (phoneNumber) =>
     "SELECT * FROM users WHERE phone_number = $1",
     [phoneNumber])
     .then(results => results.rows[0])
+    .catch(e => console.error(e))
 
 const getConversationByParticipantId = (userId) =>
   pool.query(
     "SELECT conversations.*, recipient.phone_number AS recipient_phone_number FROM conversations JOIN users AS recipient ON (recipient.id = conversations.first_user_id OR recipient.id = conversations.second_user_id) AND recipient.id != $1 WHERE first_user_id = $1 OR second_user_id = $1",
     [userId]
   ).then(results => results.rows[0])
+  .catch(e => console.error(e))
 
 const writeMessage = (fromUser, conversation, msgBody) =>
   pool.query(
@@ -34,6 +36,7 @@ const getMessages = (conversationId) =>
     'SELECT * FROM messages WHERE conversation_id = $1',
     [conversationId]
   ).then(results => results.rows)
+  .catch(e => console.error(e))
 
 app.post('/messages', async (req, res) => {
   console.log(req.body);
@@ -73,11 +76,9 @@ app.get('/messages/:conversationId', async (req, res) => {
 
 // TODO: remove before publishing (just for testing locally)
 app.get('/users', (req, res) => {
-  pool.query('SELECT * FROM users', (error, results) => {
-    if (error) {
-      throw error
-    }
-    res.status(200).json(results.rows)
+  pool.query('SELECT * FROM users')
+    .then(res.status(200).json(results.rows))
+    .catch(e => console.error(e))
   })
 })
 
