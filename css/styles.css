@@ -1,0 +1,86 @@
+html {
+  margin: 0;
+  padding: 0;
+}
+
+body, p {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica, arial, sans-serif;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: .1em;
+  background: white;
+  text-transform: lowercase;
+}
+
+.homebox {
+  padding-top: 2em;
+  padding-left: 2em;
+  width: 50%;
+  /* border: 1px red solid; */
+}
+
+.textbox {
+  padding-top: 1em;
+  margin: 0 auto;
+  height: auto;
+  width: 50%;
+}
+
+.a {
+  padding: 1em;
+  display: block;
+  text-align: left;
+}
+
+.b {
+  padding: 1em;
+  display: block;
+  text-align: right;
+}
+
+.acredit {
+  padding: 1em;
+  position: fixed;
+  bottom: 1em;
+  left: 1em;
+  display: inline;
+  text-align: left;
+}
+
+.bcredit{
+  padding: 1em;
+  position: fixed;
+  bottom: 1em;
+  right: 1em;
+  display: inline;
+  text-align: right;
+}
+
+/* unvisited link */
+a:link {
+  color: black;
+  text-decoration: none;
+}
+
+/* visited link */
+a:visited {
+  color: black;
+}
+
+/* mouse over link */
+a:hover {
+  color: blue;
+}
+
+/* selected link */
+a:active {
+  color: blue;
+}
+
+@media screen and (max-width: 700px) {
+  .box {
+    width: 98%;
+  }
+}
