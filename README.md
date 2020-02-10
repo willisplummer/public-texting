@@ -21,6 +21,7 @@ To view the logs: `heroku logs --app public-texting`
 
 ## Todos
 
+- finalize styles
 - real time updating
 - a way to create new convos w existing users
 - images
