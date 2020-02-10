@@ -8,7 +8,7 @@ body, p {
   padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica, arial, sans-serif;
   font-size: 18px;
-  line-height: 24px;
+  line-height: 1.4em;
   letter-spacing: .1em;
   background: white;
   text-transform: lowercase;
@@ -18,7 +18,6 @@ body, p {
   padding-top: 2em;
   padding-left: 2em;
   width: 50%;
-  /* border: 1px red solid; */
 }
 
 .textbox {
@@ -28,19 +27,19 @@ body, p {
   width: 50%;
 }
 
-.a {
+.left {
   padding: 1em;
   display: block;
   text-align: left;
 }
 
-.b {
+.right {
   padding: 1em;
   display: block;
   text-align: right;
 }
 
-.acredit {
+.leftcredit {
   padding: 1em;
   position: fixed;
   bottom: 1em;
@@ -49,7 +48,7 @@ body, p {
   text-align: left;
 }
 
-.bcredit{
+.rightcredit{
   padding: 1em;
   position: fixed;
   bottom: 1em;
