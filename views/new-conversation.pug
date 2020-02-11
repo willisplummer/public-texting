@@ -1,17 +1,26 @@
 html
   head
-    title Create a new conversation
+    title public texting
     link(rel='stylesheet', href='/css/styles.css')
+    link(rel='icon', type='image/png', href='/assets/favicon.png')
   body
-    h1 Create a new conversation
+    .homebox
+    p  → start a new public conversation over text
+    p this is an experiment in publishing. your conversation will be public on the web. think of texting as writing...
+    br
+    br
     form(action='/conversations', method='POST')
       p
         | first user name: 
         input(type='text', name='first_user_name', value='')
+          br
         | first user phone number: 
         input(type='text', name='first_user_phone_number', value='', placeholder='+11234567890')
+          br
         | second user name: 
         input(type='text', name='second_user_name', value='')
+          br
         | second user phone number: 
         input(type='text', name='second_user_phone_number', value='', placeholder='+11234567890')
+          br
       input(type='submit', value='Submit')

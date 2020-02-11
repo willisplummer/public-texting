@@ -1,17 +1,19 @@
 html
   head
-    title SOME PUBLIC TEXT CONVOS
+    title public texting
     link(rel='stylesheet', href='/css/styles.css')
+    link(rel='icon', type='image/png', href='/assets/favicon.png')
   body
-    h1 SOME PUBLIC TEXT CONVOS
+    .homebox
+      a(href='/conversations/new') → start a new public conversation over text
+    br
+    br
+    p open conversations
   ul
     each conversation in conversations
       li
         a(href=conversation.path) #{conversation.title}
-  a(href='/conversations/new') start a conversation
   br
   br
-  br
-  br
-  p (by willis plummer and luiza dale)
+  p by willis plummer and luiza dale
   a(href='https://github.com/willisplummer/public-texting') view source
