@@ -1,8 +1,12 @@
 html
   head
-    title CONVERSATION BETWEEN #{participants[0].toUpperCase()} AND #{participants[1].toUpperCase()}
+    title #{participants[0].toUpperCase()}, #{participants[1].toUpperCase()}
+    link(rel='stylesheet', href='/css/styles.css')
+    link(rel='icon', type= 'image/png', href='/assets/favicon.png')
   body
-    h1 CONVERSATION BETWEEN #{participants[0].toUpperCase()} AND #{participants[1].toUpperCase()}
+.textbox
   ul
     each msg in messages
       li #{msg.sender_name}: #{msg.body}
+.leftcredit #{participants[0].toUpperCase()}
+.rightcredit #{participants[1].toUpperCase()}

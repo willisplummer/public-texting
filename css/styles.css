@@ -11,13 +11,13 @@ body, p {
   line-height: 1.4em;
   letter-spacing: .1em;
   background: white;
-  text-transform: lowercase;
 }
 
 .homebox {
   padding-top: 2em;
   padding-left: 2em;
   width: 50%;
+  text-transform: lowercase;
 }
 
 .textbox {
@@ -46,15 +46,17 @@ body, p {
   left: 1em;
   display: inline;
   text-align: left;
+  text-transform: lowercase;
 }
 
-.rightcredit{
+.rightcredit {
   padding: 1em;
   position: fixed;
   bottom: 1em;
   right: 1em;
   display: inline;
   text-align: right;
+  text-transform: lowercase;
 }
 
 /* unvisited link */
@@ -76,6 +78,42 @@ a:hover {
 /* selected link */
 a:active {
   color: blue;
+}
+
+input[type=submit] {
+  margin: 0;
+  border: black .1em solid;
+  border-radius: 5em;
+  padding-left: 1.2em;
+  padding-right: 1.2em;
+  padding-top: .75em;
+  padding-bottom: .75em;
+  font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica, arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.4em;
+  letter-spacing: .1em;
+  background: white;
+  text-transform: lowercase;
+}
+
+input[type=submit]:hover {
+  border: blue .1em solid;
+  color: blue;
+}
+
+input[type=text] {
+  margin: 0;
+  border: black .1em solid;
+  border-radius: 5em;
+  padding-left: 1.2em;
+  padding-right: 1.2em;
+  padding-top: .75em;
+  padding-bottom: .75em;
+  font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica, arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.4em;
+  letter-spacing: .1em;
+  background: white;
 }
 
 @media screen and (max-width: 700px) {
