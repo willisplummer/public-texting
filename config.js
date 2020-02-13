@@ -10,7 +10,7 @@ const connectionString = `postgresql://${process.env.DB_USER}:${process.env.DB_P
 
 // make it easier to run locally without a database
 let pool
-if (process.env.DATABASE_URL && process.env.DB_USER && process.env.DB_PASSWORD && process.env.DB_PORT && process.env.DB_DATABASE) {
+if (process.env.DATABASE_URL || (process.env.DB_USER && process.env.DB_PASSWORD && process.env.DB_PORT && process.env.DB_DATABASE)) {
   pool = new Pool({
     connectionString: isProduction ? process.env.DATABASE_URL : connectionString,
     ssl: isProduction,
