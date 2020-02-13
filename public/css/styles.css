@@ -13,6 +13,10 @@ body, p {
   background: white;
 }
 
+ul {
+  margin-block-start: -.9em;
+}
+
 .homebox {
   padding-top: 2em;
   padding-left: 2em;
@@ -47,6 +51,18 @@ body, p {
   display: inline;
   text-align: left;
   text-transform: lowercase;
+}
+
+.grey {
+  color: darkgray;
+}
+
+a.grey:link {
+  color: darkgray;
+}
+
+a.grey:visited {
+  color: darkgray;
 }
 
 .rightcredit {

@@ -4,16 +4,19 @@ html
     link(rel='stylesheet', href='/css/styles.css')
     link(rel='icon', type='image/png', href='/assets/favicon.png')
   body
-    .homebox
-      a(href='/conversations/new') → start a new public conversation over text
+  .homebox
+    a(href='/conversations/new') → start a new public conversation over text
+    br
+    br
     br
     br
     p open conversations
-  ul
+    ul 
     each conversation in conversations
       li
         a(href=conversation.path) #{conversation.title}
-  br
-  br
-  p by willis plummer and luiza dale
-  a(href='https://github.com/willisplummer/public-texting') view source
+    br
+    br
+    br
+    p.grey by willis plummer and luiza dale
+    a.grey(href='https://github.com/willisplummer/public-texting') view source
