@@ -3,11 +3,20 @@ create a public record of a text convo proxy'd through twilio
 
 ## Development
 
-- add a .env file with TWILIO_ACCOUNT_SID and TWILIO_AUTH_TOKEN (can be found on the twilio dashboard)
+install nix-shell (`curl https://nixos.org/nix/install | sh`)
+
+### To run locally:
+
+```
+$ nix-shell --pure --command "yarn watch"
+```
+
+<!-- OUT OF DATE TWILIO local instructions -->
+<!-- - add a .env file with TWILIO_ACCOUNT_SID and TWILIO_AUTH_TOKEN (can be found on the twilio dashboard)
 
 - in one console `yarn start`
 - in another `ngrok http 3000`
-- update the webhook in twilio to post to the new ngrok endpoint `/messages`
+- update the webhook in twilio to post to the new ngrok endpoint `/messages` -->
 
 ## Deployment
 
