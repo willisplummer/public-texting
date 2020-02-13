@@ -8,7 +8,7 @@
     "watch": "nodemon index.js"
   },
   "engines": {
-    "node": "12.8.1"
+    "node": "12.x"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
