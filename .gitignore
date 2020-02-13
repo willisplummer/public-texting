@@ -1,4 +1,6 @@
 node_modules
 .env
+.env.*
 yarn-error.log
 .DS_Store
+local-db

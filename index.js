@@ -4,7 +4,19 @@ const { pool } = require('./config')
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
-const twilioClient = require('twilio')(accountSid, authToken);
+
+// make it easier for folks without credentials to run locally
+let twilioClient;
+if (accountSid && authToken) {
+  twilioClient = require('twilio')(accountSid, authToken);
+} else {
+  console.log('no twilio credentials provided -- running with mock twilioClient')
+  twilioClient = {
+    messages: {
+      create: () => Promise.resolve('ok')
+    }
+  }
+}
 
 const app = express()
 const port = process.env.PORT || 3000
