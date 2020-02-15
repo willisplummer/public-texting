@@ -163,7 +163,7 @@ app.post('/conversations', async (req, res) => {
     ).then(res => res.rows[0].id)
 
 
-    const newThreadMsg = `This is your new thread for public texting. You can see everything at https://public-texting.herokuapp.com/conversations/${conversationId}`
+    const newThreadMsg = `this is your new thread for public texting. see your conversation at https://public-texting.herokuapp.com/conversations/${conversationId}`
 
     twilioClient.messages.create({
       body: newThreadMsg,
