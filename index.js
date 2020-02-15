@@ -170,7 +170,7 @@ app.post('/conversations', async (req, res) => {
       to: firstUser.phone_number,
       from: HARDCODED_TWILIO_NUMBER
     }).catch(e => { throw e })
-  
+
     twilioClient.messages.create({
       body: newThreadMsg,
       to: secondUser.phone_number,
@@ -178,7 +178,7 @@ app.post('/conversations', async (req, res) => {
     }).catch(e => { throw e })
 
     await client.query('COMMIT')
-  
+
     res.sendStatus(200)
   } catch (e) {
     await client.query('ROLLBACK')
@@ -194,7 +194,7 @@ app.get('/', async (req, res) => {
 
   const conversations = conversationsRes.map(convo => {
     return {
-      title: 'conversation btwn ' + convo.first_user_name + ' and ' + convo.second_user_name,
+      title: convo.first_user_name + ', ' + convo.second_user_name,
       path: '/conversations/' + convo.id
     }
   })
