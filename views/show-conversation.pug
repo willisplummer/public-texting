@@ -1,9 +1,14 @@
 html
   head
-    title CONVERSATION BETWEEN #{participants[0].toUpperCase()} AND #{participants[1].toUpperCase()}
+    title #{participants[0]}, #{participants[1]}
     link(rel='stylesheet', href='/css/styles.css')
+    link(rel='icon', type='image/gif', href='/assets/favicon.gif')
   body
-    h1 CONVERSATION BETWEEN #{participants[0].toUpperCase()} AND #{participants[1].toUpperCase()}
-  ul
-    each msg in messages
-      li #{msg.sender_name}: #{msg.body}
+  .textbox
+    ul
+      each msg in messages
+        - var classname = participants[0] === msg.sender_name ? 'left' : 'right'
+        li(class=classname) #{msg.body}
+      
+  .leftcredit #{participants[0]}
+  .rightcredit #{participants[1]}

@@ -11,20 +11,24 @@ body, p {
   line-height: 1.4em;
   letter-spacing: .1em;
   background: white;
-  text-transform: lowercase;
+}
+
+ul.home {
+  margin-block-start: -.9em;
 }
 
 .homebox {
   padding-top: 2em;
   padding-left: 2em;
   width: 50%;
+  text-transform: lowercase;
 }
 
 .textbox {
   padding-top: 1em;
   margin: 0 auto;
   height: auto;
-  width: 50%;
+  width: 70%;
 }
 
 .left {
@@ -46,15 +50,29 @@ body, p {
   left: 1em;
   display: inline;
   text-align: left;
+  text-transform: lowercase;
 }
 
-.rightcredit{
+.grey {
+  color: darkgray;
+}
+
+a.grey:link {
+  color: darkgray;
+}
+
+a.grey:visited {
+  color: darkgray;
+}
+
+.rightcredit {
   padding: 1em;
   position: fixed;
   bottom: 1em;
   right: 1em;
   display: inline;
   text-align: right;
+  text-transform: lowercase;
 }
 
 /* unvisited link */
@@ -78,8 +96,51 @@ a:active {
   color: blue;
 }
 
+input[type=submit] {
+  margin: 0;
+  border: black .1em solid;
+  border-radius: 5em;
+  padding-left: 1.2em;
+  padding-right: 1.2em;
+  padding-top: .5em;
+  padding-bottom: .5em;
+  font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica, arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.4em;
+  letter-spacing: .1em;
+  background: black;
+  color: white;
+  text-transform: lowercase;
+}
+
+input[type=submit]:hover {
+  border: blue .1em solid;
+  background: blue;
+  color: white;
+}
+
+input[type=text] {
+  margin: 0;
+  border: black .1em solid;
+  border-radius: 5em;
+  padding-left: 1.2em;
+  padding-right: 1.2em;
+  padding-top: .5em;
+  padding-bottom: .5em;
+  font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica, arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.4em;
+  letter-spacing: .1em;
+  background: white;
+  width: 10em;
+}
+
 @media screen and (max-width: 700px) {
-  .box {
+  .textbox {
+    width: 98%;
+  }
+
+  .homebox {
     width: 98%;
   }
 }
