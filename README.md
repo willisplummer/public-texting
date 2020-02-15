@@ -28,9 +28,11 @@ To access the heroku db:
 
 To view the logs: `heroku logs --app public-texting`
 
-## Todos
+## TODO's
 
 - deactivate old convo when a new convo uses same number
 - images
+
+### Nice to have
 - links
 - real time updating
