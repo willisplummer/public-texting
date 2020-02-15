@@ -42,7 +42,7 @@ const getUsers = () =>
 
 const getUserByPhoneNumber = (phoneNumber) =>
   pool.query(
-    "SELECT * FROM users WHERE phone_number = $1",
+    "SELECT * FROM users WHERE phone_number = $1 AND active = TRUE",
     [phoneNumber])
     .then(results => results.rows[0])
     .catch(e => console.error(e))
@@ -80,6 +80,12 @@ const deactivateConversation = (conversationId) =>
     [conversationId]
   ).catch(e => console.error(e))
 
+const deactivateUsers = (user_ids) =>
+  pool.query(
+    "UPDATE users SET active = FALSE WHERE id = ANY ($1)",
+    [user_ids]
+  ).catch(e => console.error(e))
+
 app.post('/messages', async (req, res) => {
   console.log(req.body);
 
@@ -98,6 +104,8 @@ app.post('/messages', async (req, res) => {
     if (conversation) {
       if (CONVERSATION_ENDERS.includes(msgBody)) {
         deactivateConversation(conversation.id)
+        deactivateUsers([conversation.first_user_id, conversation.second_user_id])
+
         twilioClient.messages.create({
           body: "Conversation has ended",
           to: conversation.recipient_phone_number,
@@ -108,6 +116,7 @@ app.post('/messages', async (req, res) => {
           to: fromUser.phone_number,
           from: conversation.twilio_phone_number
         })
+
         return res.send('<Response></Response>');
       }
       // write to memory
@@ -135,13 +144,6 @@ app.get('/conversations/:conversationId', async (req, res) => {
   const participants = await getConversationParticipants(conversationId)
 
   res.render('show-conversation', { messages, participants: Object.values(participants) })
-})
-
-// TODO: remove before publishing (just for testing locally)
-app.get('/users', async (req, res) => {
-  const users = await getUsers()
-
-  res.send(JSON.stringify(users))
 })
 
 app.post('/conversations', async (req, res) => {

@@ -9,10 +9,12 @@ $$ LANGUAGE plpgsql;
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   name VARCHAR(256) NOT NULL,
-  phone_number VARCHAR(256) UNIQUE NOT NULL,
+  phone_number VARCHAR(256) NOT NULL,
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  active BOOLEAN NOT NULL DEFAULT TRUE
 );
+CREATE UNIQUE INDEX idx_uq_active_users_phone_number ON users(phone_number) WHERE users.active = TRUE;
 
 CREATE TRIGGER set_timestamp
 BEFORE UPDATE ON users
