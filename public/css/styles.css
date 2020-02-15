@@ -13,7 +13,7 @@ body, p {
   background: white;
 }
 
-ul {
+ul.home {
   margin-block-start: -.9em;
 }
 
@@ -28,7 +28,7 @@ ul {
   padding-top: 1em;
   margin: 0 auto;
   height: auto;
-  width: 50%;
+  width: 70%;
 }
 
 .left {
@@ -102,19 +102,21 @@ input[type=submit] {
   border-radius: 5em;
   padding-left: 1.2em;
   padding-right: 1.2em;
-  padding-top: .75em;
-  padding-bottom: .75em;
+  padding-top: .5em;
+  padding-bottom: .5em;
   font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica, arial, sans-serif;
   font-size: 18px;
   line-height: 1.4em;
   letter-spacing: .1em;
-  background: white;
+  background: black;
+  color: white;
   text-transform: lowercase;
 }
 
 input[type=submit]:hover {
   border: blue .1em solid;
-  color: blue;
+  background: blue;
+  color: white;
 }
 
 input[type=text] {
@@ -123,13 +125,14 @@ input[type=text] {
   border-radius: 5em;
   padding-left: 1.2em;
   padding-right: 1.2em;
-  padding-top: .75em;
-  padding-bottom: .75em;
+  padding-top: .5em;
+  padding-bottom: .5em;
   font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica, arial, sans-serif;
   font-size: 18px;
   line-height: 1.4em;
   letter-spacing: .1em;
   background: white;
+  width: 10em;
 }
 
 @media screen and (max-width: 700px) {

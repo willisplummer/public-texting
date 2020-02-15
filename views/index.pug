@@ -2,21 +2,20 @@ html
   head
     title public texting
     link(rel='stylesheet', href='/css/styles.css')
-    link(rel='icon', type='image/png', href='/assets/favicon.png')
+    link(rel='icon', type='image/gif', href='/assets/favicon.gif')
   body
   .homebox
     a(href='/conversations/new') → start a new public conversation over text
     br
     br
-    br
-    br
     p open conversations
-    ul 
+    ul.home 
     each conversation in conversations
       li
-        a(href=conversation.path) #{conversation.title}
+        a(href=conversation.path, target='blank') #{conversation.title}
     br
     br
     br
-    p.grey by willis plummer and luiza dale
+  p.leftcredit.grey by willis plummer and luiza dale
+    br
     a.grey(href='https://github.com/willisplummer/public-texting') view source

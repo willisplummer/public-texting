@@ -1,13 +1,14 @@
 html
   head
-    title #{participants[0].toUpperCase()}, #{participants[1].toUpperCase()}
+    title #{participants[0]}, #{participants[1]}
     link(rel='stylesheet', href='/css/styles.css')
-    link(rel='icon', type='image/png', href='/assets/favicon.png')
+    link(rel='icon', type='image/gif', href='/assets/favicon.gif')
   body
   .textbox
-  ul
-    each msg in messages
-      li #{msg.sender_name}: #{msg.body}
+    ul
+      each msg in messages
+        - var classname = participants[0] === msg.sender_name ? 'left' : 'right'
+        li(class=classname) #{msg.body}
       
-  .left #{participants[0].toUpperCase()}
-  .right #{participants[1].toUpperCase()}
+  .leftcredit #{participants[0]}
+  .rightcredit #{participants[1]}
