@@ -5,6 +5,8 @@ const { pool } = require('./config')
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 
+const CONVERSATION_ENDERS = ["DEACTIVATE", "END CONVERSATION", "!!!STOP!!!"]
+
 // make it easier for folks without credentials to run locally
 let twilioClient;
 if (accountSid && authToken) {
@@ -54,7 +56,7 @@ const getConversationParticipants = (conversationId) =>
 
 const getConversationByParticipantId = (userId) =>
   pool.query(
-    "SELECT conversations.*, recipient.phone_number AS recipient_phone_number FROM conversations JOIN users AS recipient ON (recipient.id = conversations.first_user_id OR recipient.id = conversations.second_user_id) AND recipient.id != $1 WHERE first_user_id = $1 OR second_user_id = $1",
+    "SELECT conversations.*, recipient.phone_number AS recipient_phone_number FROM conversations JOIN users AS recipient ON (recipient.id = conversations.first_user_id OR recipient.id = conversations.second_user_id) AND recipient.id != $1 WHERE conversations.active = TRUE AND (first_user_id = $1 OR second_user_id = $1)",
     [userId]
   ).then(results => results.rows[0])
   .catch(e => console.error(e))
@@ -72,6 +74,12 @@ const getMessages = (conversationId) =>
   ).then(results => results.rows)
   .catch(e => console.error(e))
 
+const deactivateConversation = (conversationId) =>
+  pool.query(
+    "UPDATE conversations SET active = FALSE WHERE id = $1",
+    [conversationId]
+  ).catch(e => console.error(e))
+
 app.post('/messages', async (req, res) => {
   console.log(req.body);
 
@@ -87,17 +95,32 @@ app.post('/messages', async (req, res) => {
     const conversation = await getConversationByParticipantId(fromUser.id)
     console.log(conversation)
 
-    // write to memory
-    await writeMessage(fromUser, conversation, msgBody)
+    if (conversation) {
+      if (CONVERSATION_ENDERS.includes(msgBody)) {
+        deactivateConversation(conversation.id)
+        twilioClient.messages.create({
+          body: "Conversation has ended",
+          to: conversation.recipient_phone_number,
+          from: conversation.twilio_phone_number
+        })
+        twilioClient.messages.create({
+          body: "Conversation has ended",
+          to: fromUser.phone_number,
+          from: conversation.twilio_phone_number
+        })
+        return res.send('<Response></Response>');
+      }
+      // write to memory
+      await writeMessage(fromUser, conversation, msgBody)
 
-    // proxy number to other conversation participant
-    twilioClient.messages.create({
-      body: msgBody,
-      to: conversation.recipient_phone_number,
-      from: conversation.twilio_phone_number
-    }).catch(e => console.log(e))
+      // proxy number to other conversation participant
+      twilioClient.messages.create({
+        body: msgBody,
+        to: conversation.recipient_phone_number,
+        from: conversation.twilio_phone_number
+      }).catch(e => console.log(e))
+    }
   }
-
   res.send('<Response></Response>');
 })
 
