@@ -9,10 +9,12 @@ $$ LANGUAGE plpgsql;
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   name VARCHAR(256) NOT NULL,
-  phone_number VARCHAR(256) UNIQUE NOT NULL,
+  phone_number VARCHAR(256) NOT NULL,
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  active BOOLEAN NOT NULL DEFAULT TRUE
 );
+CREATE UNIQUE INDEX idx_uq_active_users_phone_number ON users(phone_number) WHERE users.active = TRUE;
 
 CREATE TRIGGER set_timestamp
 BEFORE UPDATE ON users
@@ -25,7 +27,8 @@ CREATE TABLE conversations (
   second_user_id INTEGER REFERENCES users(id),
   twilio_phone_number VARCHAR(256) NOT NULL,
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  active BOOLEAN NOT NULL DEFAULT TRUE
 );
 CREATE INDEX conversations_first_user_id_idx ON conversations(first_user_id);
 CREATE INDEX conversations_second_user_id_idx ON conversations(second_user_id);
@@ -50,27 +53,3 @@ CREATE TRIGGER set_timestamp
 BEFORE UPDATE ON messages
 FOR EACH ROW
 EXECUTE PROCEDURE trigger_set_timestamp();
-
-INSERT INTO users (name, phone_number)
-VALUES  ('Luiza', '+13475451506');
-
-INSERT INTO users (name, phone_number)
-VALUES  ('Willis', '+15412618972');
-
-INSERT INTO conversations (first_user_id, second_user_id, twilio_phone_number)
-VALUES  (1, 2, '+18163987214');
-
-INSERT INTO messages (conversation_id, sender_id, body)
-VALUES (1, 1, 'this is a message');
-
-INSERT INTO messages (conversation_id, sender_id, body)
-VALUES (1, 1, 'this is another message');
-
-INSERT INTO messages (conversation_id, sender_id, body)
-VALUES (1, 2, 'this is a response');
-
-INSERT INTO messages (conversation_id, sender_id, body)
-VALUES (1, 2, 'this is another response');
-
-INSERT INTO messages (conversation_id, sender_id, body)
-VALUES (1, 1, 'this is original sender again!');

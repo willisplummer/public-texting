@@ -28,7 +28,8 @@ in pkgs.stdenv.mkDerivation {
         initdb $PGDATA -U $DB_USER --pwfile=./pw.txt --auth=trust >/dev/null
         rm pw.txt
         pg_ctl -o "-p $DB_PORT" start
-        psql $DB_URL -f init.pgsql
+        psql $DB_URL -f sql/init.pgsql
+        psql $DB_URL -f sql/seed.pgsql
       else
         pg_ctl -o "-p $DB_PORT" start
       fi
