@@ -35,4 +35,5 @@ To view the logs: `heroku logs --app public-texting`
 
 ### Nice to have
 - links
+- timestamps when it's been a few hours between messages
 - real time updating
