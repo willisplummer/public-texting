@@ -138,18 +138,26 @@ app.post('/messages', async (req, res) => {
           mediaUrl,
           mediaType
         )
+
+        // proxy msg to other conversation participant
+        twilioClient.messages.create({
+          body: mediaUrl,
+          to: conversation.recipient_phone_number,
+          from: conversation.twilio_phone_number
+        }).catch(e => console.log(e))
       }
 
       if (msgBody !== '') {
         await writeMessage(fromUser, conversation, msgBody)
+
+        // proxy msg to other conversation participant
+        twilioClient.messages.create({
+          body: msgBody,
+          to: conversation.recipient_phone_number,
+          from: conversation.twilio_phone_number
+        }).catch(e => console.log(e))
       }
 
-      // proxy number to other conversation participant
-      twilioClient.messages.create({
-        body: msgBody,
-        to: conversation.recipient_phone_number,
-        from: conversation.twilio_phone_number
-      }).catch(e => console.log(e))
     }
   }
   res.send('<Response></Response>');
