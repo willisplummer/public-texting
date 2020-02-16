@@ -1,8 +1,10 @@
 html
   head
     title public texting
+    meta(name='description' content='public texting')
     link(rel='stylesheet', href='/css/styles.css')
-    link(rel='icon', type='image/gif', href='/assets/favicon.gif')
+    link(rel='icon', type='image/png', href='/assets/favicon-0.png')
+    script(src="/scripts/fav-loop.js")
   body
   .homebox
     p  → start a new public conversation over text
@@ -19,11 +21,11 @@ html
         input(type='text', name='first_user_phone_number', value='', placeholder='+11234567890')
         br
         br
-        | second user name:
-        input(type='text', name='second_user_name', value='', placeholder='your name')
+        | second user name: 
+        input(type='text', name='second_user_name', value='', placeholder='their name')
         br
         br
-        | second user phone number:
+        | second user phone number: 
         input(type='text', name='second_user_phone_number', value='', placeholder='+11234567890')
         br
         br

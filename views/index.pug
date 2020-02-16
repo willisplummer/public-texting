@@ -1,8 +1,10 @@
 html
   head
     title public texting
+    meta(name='description' content='public texting')
     link(rel='stylesheet', href='/css/styles.css')
-    link(rel='icon', type='image/gif', href='/assets/favicon.gif')
+    link(rel='icon', type='image/png', href='/assets/favicon-0.png')
+    script(src="/scripts/fav-loop.js")
   body
   .homebox
     a(href='/conversations/new') → start a new public conversation over text
@@ -12,7 +14,7 @@ html
     ul.home 
     each conversation in conversations
       li
-        a(href=conversation.path, target='blank') #{conversation.title}
+        a(href=conversation.path) #{conversation.title}
     br
     br
     br

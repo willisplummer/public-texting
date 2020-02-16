@@ -1,4 +1,4 @@
-html {
+*, html {
   margin: 0;
   padding: 0;
 }
@@ -13,10 +13,6 @@ body, p {
   background: white;
 }
 
-ul.home {
-  margin-block-start: -.9em;
-}
-
 .homebox {
   padding-top: 2em;
   padding-left: 2em;
@@ -26,21 +22,28 @@ ul.home {
 
 .textbox {
   padding-top: 1em;
-  margin: 0 auto;
-  height: auto;
-  width: 70%;
 }
 
 .left {
-  padding: 1em;
+  margin: 0 auto;
+  height: auto;
+  width: 45%;
+  padding: 0.4em;
+  margin-right: 25em;
   display: block;
   text-align: left;
+  /* border: 1px solid black; */
 }
 
 .right {
-  padding: 1em;
+  margin: 0 auto;
+  height: auto;
+  width: 45%;
+  padding: 0.4em;
   display: block;
+  margin-left: 25em;
   text-align: right;
+  /* border: 1px solid black; */
 }
 
 .leftcredit {
