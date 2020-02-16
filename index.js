@@ -135,8 +135,8 @@ app.post('/messages', async (req, res) => {
           fromUser,
           conversation,
           msgBody,
-          mediaType,
-          mediaUrl
+          mediaUrl,
+          mediaType
         )
       }
 
