@@ -67,6 +67,12 @@ const writeMessage = (fromUser, conversation, msgBody) =>
     [conversation.id, fromUser.id, msgBody]
   )
 
+const writeMessageWithMedia = (fromUser, conversation, msgBody, mediaUrl, mediaType) =>
+  pool.query(
+    "INSERT INTO messages (conversation_id, sender_id, body, media_url, media_type) VALUES ($1, $2, $3, $4, $5)",
+    [conversation.id, fromUser.id, msgBody, mediaUrl, mediaType]
+  )
+
 const getMessages = (conversationId) =>
   pool.query(
     'SELECT messages.*, users.name AS sender_name FROM messages JOIN users ON users.id = messages.sender_id WHERE conversation_id = $1 ORDER BY created_at ASC',
@@ -120,7 +126,23 @@ app.post('/messages', async (req, res) => {
         return res.send('<Response></Response>');
       }
       // write to memory
-      await writeMessage(fromUser, conversation, msgBody)
+      const mediaCount = parseInt(req.body.NumMedia)
+
+      for (var i = 0; i < mediaCount; i++) {
+        const mediaType = req.body['MediaContentType'+i]
+        const mediaUrl = req.body['MediaUrl'+i]
+        await writeMessageWithMedia(
+          fromUser,
+          conversation,
+          msgBody,
+          mediaType,
+          mediaUrl
+        )
+      }
+
+      if (msgBody !== '') {
+        await writeMessage(fromUser, conversation, msgBody)
+      }
 
       // proxy number to other conversation participant
       twilioClient.messages.create({

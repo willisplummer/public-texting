@@ -43,6 +43,8 @@ CREATE TABLE messages (
   conversation_id INTEGER REFERENCES conversations(id),
   sender_id INTEGER REFERENCES users(id),
   body VARCHAR(256) NOT NULL,
+  media_url VARCHAR(256),
+  media_type VARCHAR(256),
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
