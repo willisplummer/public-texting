@@ -13,6 +13,10 @@ body, p {
   background: white;
 }
 
+img {
+  width: 30%;
+}
+
 .homebox {
   padding-top: 2em;
   padding-left: 2em;
