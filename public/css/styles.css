@@ -13,10 +13,6 @@ body, p {
   background: white;
 }
 
-ul.home {
-  margin-block-start: -.9em;
-}
-
 .homebox {
   padding-top: 2em;
   padding-left: 2em;
