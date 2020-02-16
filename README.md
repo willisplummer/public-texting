@@ -28,10 +28,7 @@ To access the heroku db:
 
 To view the logs: `heroku logs --app public-texting`
 
-## TODO's
-- images
-
-### Nice to have
+### Nice to haves
 - links
 - timestamps when it's been a few hours between messages
 - real time updating
