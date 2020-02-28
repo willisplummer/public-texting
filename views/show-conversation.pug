@@ -6,15 +6,17 @@ html
     link(rel='icon', type='image/png', href='/assets/favicon-0.png')
     script(src="/scripts/fav-loop.js")
   body
+  .creditbar
+       .leftcredit #{participants[0]}
+       .rightcredit #{participants[1]}  
   .textbox
-    ul
-      each msg in messages
-        - var classname = participants[0] === msg.sender_name ? 'left' : 'right'
-        if (!!msg.media_type)
-          li(class=classname)
-            img(src=msg.media_url)
-        else
-          li(class=classname) #{msg.body}
-      
-  .leftcredit #{participants[0]}
-  .rightcredit #{participants[1]}
+       ul
+         each msg in messages
+            - var classname = participants[0] === msg.sender_name ? 'left' : 'right'
+            if (!!msg.media_type)
+              li(class=classname)
+                img(src=msg.media_url)
+            else
+              li(class=classname) #{msg.body}
+          
+  
