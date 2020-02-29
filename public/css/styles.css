@@ -9,55 +9,107 @@ body, p {
   font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica, arial, sans-serif;
   font-size: 18px;
   line-height: 1.4em;
-  letter-spacing: .1em;
+  letter-spacing: .05em;
   background: white;
 }
 
-img {
-  width: 30%;
+img.left {
+  width: 100%;
+  border-radius: 2em;
+  border-radius: solid 2px dodgerblue;
+}
+
+img.right {
+  width: 100%;
+  border-radius: 2em;
+  border-radius: solid 2px darkgray;
 }
 
 .homebox {
   padding-top: 2em;
   padding-left: 2em;
   width: 50%;
-  text-transform: lowercase;
+  /* text-transform: lowercase; */
 }
 
 .textbox {
-  padding-top: 1em;
+  padding-top: 1.5em;
+  position: absolute;
+  left: 2em;
+  top: 2em;
+  width: 60%;
+  height: 80%;
+}
+
+.creditbar {
+    padding-top: 1em;
+    padding-bottom: 2em;
+    padding-left: 2em;
+    position: fixed;
+    z-index: 2;
+    width: 60%;
+    height: 2em;
+    background: -webkit-linear-gradient(
+        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    background-image: -moz-linear-gradient(
+        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    background-image: -o-linear-gradient(
+        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    background-image: linear-gradient(
+        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    background-image: -ms-linear-gradient(
+        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 255, 255, 0) 100%
+    );
 }
 
 .left {
-  margin: 0 auto;
   height: auto;
-  width: 45%;
-  padding: 0.4em;
-  margin-right: 25em;
+  width: 90%;
+  padding-top: .5em;
+  padding-bottom: .5em;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
   display: block;
   text-align: left;
-  /* border: 1px solid black; */
+  margin-left:0;
+  background-color: darkgray;
+  color: white;
+  border-radius: 2em;
+  margin-bottom: 1em;
 }
 
 .right {
-  margin: 0 auto;
   height: auto;
-  width: 45%;
-  padding: 0.4em;
+  width: 50%;
+  padding-top: .5em;
+  padding-bottom: .5em;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
   display: block;
-  margin-left: 25em;
-  text-align: right;
-  /* border: 1px solid black; */
+  text-align: left;
+  margin-left: 40%;
+  background-color: dodgerblue;
+  color: white;
+  border-radius: 2em;
+  margin-bottom: 1em;
 }
 
 .leftcredit {
-  padding: 1em;
-  position: fixed;
-  bottom: 1em;
-  left: 1em;
-  display: inline;
+  display: inline-block;
+  position: relative;
+  left: 0;
   text-align: left;
-  text-transform: lowercase;
+  color: darkgrey;
+  /* text-transform: lowercase; */
 }
 
 .grey {
@@ -73,13 +125,9 @@ a.grey:visited {
 }
 
 .rightcredit {
-  padding: 1em;
-  position: fixed;
-  bottom: 1em;
-  right: 1em;
-  display: inline;
-  text-align: right;
-  text-transform: lowercase;
+  margin-left: 32%;
+  display: inline-block;
+  color: dodgerblue;
 }
 
 /* unvisited link */
@@ -117,7 +165,7 @@ input[type=submit] {
   letter-spacing: .1em;
   background: black;
   color: white;
-  text-transform: lowercase;
+  /* text-transform: lowercase; */
 }
 
 input[type=submit]:hover {
@@ -143,9 +191,13 @@ input[type=text] {
 }
 
 @media screen and (max-width: 700px) {
-  .textbox {
-    width: 98%;
-  }
+    .textbox {
+      padding-top: 1em;
+      position: absolute;
+      left: 1em;
+      width: 90%;
+      height: 80%;
+    }
 
   .homebox {
     width: 98%;
