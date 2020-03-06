@@ -13,23 +13,10 @@ body, p {
   background: white;
 }
 
-img.left {
-  width: 100%;
-  border-radius: 2em;
-  border-radius: solid 2px dodgerblue;
-}
-
-img.right {
-  width: 100%;
-  border-radius: 2em;
-  border-radius: solid 2px darkgray;
-}
-
 .homebox {
   padding-top: 2em;
   padding-left: 2em;
   width: 50%;
-  /* text-transform: lowercase; */
 }
 
 .textbox {
@@ -48,7 +35,7 @@ img.right {
     position: fixed;
     z-index: 2;
     width: 60%;
-    height: 2em;
+    height: 1em;
     background: -webkit-linear-gradient(
         rgba(255, 255, 255, 1) 0%,
         rgba(255, 255, 255, 0) 100%
@@ -76,15 +63,10 @@ img.right {
   width: 90%;
   padding-top: .5em;
   padding-bottom: .5em;
-  padding-left: 1.5em;
-  padding-right: 1.5em;
   display: block;
   text-align: left;
   margin-left:0;
-  background-color: darkgray;
-  color: white;
-  border-radius: 2em;
-  margin-bottom: 1em;
+  color: darkgray;
 }
 
 .right {
@@ -92,15 +74,26 @@ img.right {
   width: 50%;
   padding-top: .5em;
   padding-bottom: .5em;
-  padding-left: 1.5em;
-  padding-right: 1.5em;
   display: block;
   text-align: left;
   margin-left: 40%;
-  background-color: dodgerblue;
-  color: white;
-  border-radius: 2em;
-  margin-bottom: 1em;
+  color: dodgerblue;
+}
+
+.left img {
+  height: auto;
+  max-width: 100%;
+  border-radius: 3.5em;
+  border: .2em solid darkgray;
+  margin: 0;
+}
+
+.right img {
+  height: auto;
+  max-width: 100%;
+  border-radius: 3.5em;
+  border: .2em solid dodgerblue;
+  margin: 0;
 }
 
 .leftcredit {
@@ -112,8 +105,21 @@ img.right {
   /* text-transform: lowercase; */
 }
 
+.rightcredit {
+  margin-left: 32%;
+  display: inline-block;
+  color: dodgerblue;
+}
+
 .grey {
   color: darkgray;
+}
+
+.homecredit {
+  position: fixed;
+  left: 2em;
+  bottom: 2em;
+  color: darkgrey;
 }
 
 a.grey:link {
@@ -122,12 +128,6 @@ a.grey:link {
 
 a.grey:visited {
   color: darkgray;
-}
-
-.rightcredit {
-  margin-left: 32%;
-  display: inline-block;
-  color: dodgerblue;
 }
 
 /* unvisited link */
@@ -190,16 +190,38 @@ input[type=text] {
   width: 10em;
 }
 
-@media screen and (max-width: 700px) {
-    .textbox {
+@media only screen and (max-width: 768px) {
+    .homebox {
       padding-top: 1em;
-      position: absolute;
-      left: 1em;
-      width: 90%;
-      height: 80%;
+      padding-left: 1em;
+      width: 100%;
     }
 
-  .homebox {
-    width: 98%;
+    .textbox {
+      padding-top: 0;
+      position: relative;
+      left: 1em;
+      top: 2em;
+      width: 100%;
+      height: auto;
+    }
+
+    .creditbar {
+        padding-top: 1em;
+        padding-bottom: 0;
+        padding-left: 1em;
+        position: relative;
+        z-index: 2;
+        width: 98%;
+        height: .5em;
+        background: white;
+    }
+
+    .homecredit {
+      position: fixed;
+      left: 1em;
+      bottom: 1em;
+      color: grey;
+    }
+
   }
-}
