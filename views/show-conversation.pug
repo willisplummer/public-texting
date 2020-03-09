@@ -2,21 +2,28 @@ html
   head
     title #{participants[0]}, #{participants[1]}
     meta(name='description' content='public texting')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
     link(rel='stylesheet', href='/css/styles.css')
     link(rel='icon', type='image/png', href='/assets/favicon-0.png')
     script(src="/scripts/fav-loop.js")
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')
+    script.
+      $(document).ready(function () {
+      $('html, body').animate({
+      scrollTop: $('#dots').offset().top
+      }, 'slow');
+      });
   body
-  .creditbar
-       .leftcredit #{participants[0]}
-       .rightcredit #{participants[1]}  
   .textbox
-       ul
-         each msg in messages
-            - var classname = participants[0] === msg.sender_name ? 'left' : 'right'
+    .creditbar
+      .leftcredit #{participants[0]}
+      .rightcredit #{participants[1]}  
+    ul
+      each msg in messages
+        - var classname = participants[0] === msg.sender_name ? 'left' : 'right'
             if (!!msg.media_type)
               li(class=classname)
                 img(src=msg.media_url)
             else
               li(class=classname) #{msg.body}
-          
-  
+    img#dots(src='/assets/dots.gif')
