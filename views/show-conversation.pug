@@ -4,13 +4,12 @@ html
     meta(name='description' content='public texting')
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
     link(rel='stylesheet', href='/css/styles.css')
-    link(rel='icon', type='image/png', href='/assets/favicon-0.png')
-    script(src="/scripts/fav-loop.js")
+    link(rel='icon', type='image/png', href='/assets/favicon-bubble.png')
     script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')
     script.
       $(document).ready(function () {
       $('html, body').animate({
-      scrollTop: $('#dots').offset().top
+      scrollTop: $('#end').offset().top
       }, 'slow');
       });
   body
@@ -26,4 +25,9 @@ html
                 img(src=msg.media_url)
             else
               li(class=classname) #{msg.body}
+    br
     img#dots(src='/assets/dots.gif')
+    p#end
+    
+  .homecredit2
+    a.grey(href='javascript:history.back()') ←

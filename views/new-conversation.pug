@@ -4,9 +4,7 @@ html
     meta(name='description' content='public texting')
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
     link(rel='stylesheet', href='/css/styles.css')
-    link(rel='icon', type='image/png', href='/assets/favicon-0.png')
-    script(src="/scripts/fav-loop.js")
-  body
+    link(rel='icon', type='image/png', href='/assets/favicon-bubble.png')
   .homebox
     p  → start a new public conversation over text
     br
@@ -18,7 +16,7 @@ html
         input(type='text', name='first_user_name', value='', placeholder='your name')
         br
         br
-        | first user phone number: 
+        | first user's phone number: 
         input(type='text', name='first_user_phone_number', value='', placeholder='+11234567890')
         br
         br
@@ -26,10 +24,13 @@ html
         input(type='text', name='second_user_name', value='', placeholder='their name')
         br
         br
-        | second user phone number: 
+        | second user's phone number: 
         input(type='text', name='second_user_phone_number', value='', placeholder='+11234567890')
         br
         br
         input(type='submit', value='Submit')
+    br
+    br
+    br
     .homecredit
      a.grey(href='javascript:history.back()') back
