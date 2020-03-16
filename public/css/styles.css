@@ -1,227 +1,244 @@
 *, html {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body, p {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica, arial, sans-serif;
-  font-size: 18px;
-  line-height: 1.4em;
-  letter-spacing: .05em;
-  background: white;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica, arial, sans-serif;
+    font-size: 18px;
+    line-height: 1.4em;
+    letter-spacing: .05em;
+    background: white;
 }
 
 .homebox {
-  padding-top: 2em;
-  padding-left: 2em;
-  width: 50%;
+    padding-top: 2em;
+    padding-left: 2em;
+    width: 60%;
 }
 
 .textbox {
-  padding-top: 1.5em;
-  position: absolute;
-  left: 2em;
-  top: 2em;
-  width: 60%;
-  height: 80%;
+    padding-top: 1.5em;
+    position: absolute;
+    left: 2em;
+    top: 2em;
+    width: 60%;
 }
 
 .creditbar {
     padding-top: 1em;
     padding-bottom: 2em;
-    padding-left: 2em;
     position: fixed;
+    top: 0;
     z-index: 2;
-    width: 60%;
+    width: 100%;
     height: 1em;
-    background: -webkit-linear-gradient(
-        rgba(255, 255, 255, 1) 0%,
-        rgba(255, 255, 255, 0) 100%
-    );
-    background-image: -moz-linear-gradient(
-        rgba(255, 255, 255, 1) 0%,
-        rgba(255, 255, 255, 0) 100%
-    );
-    background-image: -o-linear-gradient(
-        rgba(255, 255, 255, 1) 0%,
-        rgba(255, 255, 255, 0) 100%
-    );
-    background-image: linear-gradient(
-        rgba(255, 255, 255, 1) 0%,
-        rgba(255, 255, 255, 0) 100%
-    );
-    background-image: -ms-linear-gradient(
-        rgba(255, 255, 255, 1) 0%,
-        rgba(255, 255, 255, 0) 100%
-    );
+    background: -webkit-linear-gradient(rgba(255, 255, 255, 1) 0%,
+            rgba(255, 255, 255, 0) 100%);
+    background-image: -moz-linear-gradient(rgba(255, 255, 255, 1) 0%,
+            rgba(255, 255, 255, 0) 100%);
+    background-image: -o-linear-gradient(rgba(255, 255, 255, 1) 0%,
+            rgba(255, 255, 255, 0) 100%);
+    background-image: linear-gradient(rgba(255, 255, 255, 1) 0%,
+            rgba(255, 255, 255, 0) 100%);
+    background-image: -ms-linear-gradient(rgba(255, 255, 255, 1) 0%,
+            rgba(255, 255, 255, 0) 100%);
 }
 
 .left {
-  height: auto;
-  width: 90%;
-  padding-top: .5em;
-  padding-bottom: .5em;
-  display: block;
-  text-align: left;
-  margin-left:0;
-  color: darkgray;
+    height: auto;
+    width: 100%;
+    padding-top: .5em;
+    padding-bottom: .5em;
+    display: block;
+    text-align: left;
+    margin-left: 0;
+    color: darkgray;
 }
 
 .right {
-  height: auto;
-  width: 50%;
-  padding-top: .5em;
-  padding-bottom: .5em;
-  display: block;
-  text-align: left;
-  margin-left: 40%;
-  color: dodgerblue;
+    height: auto;
+    width: 50%;
+    padding-top: .5em;
+    padding-bottom: .5em;
+    display: block;
+    text-align: left;
+    margin-left: 50%;
+    color: dodgerblue;
 }
 
 .left img {
-  height: auto;
-  max-width: 100%;
-  border-radius: 3.5em;
-  border: .2em solid darkgray;
-  margin: 0;
+    height: auto;
+    max-width: 50%;
+    border-radius: 3.5em;
+    /* border: .2em solid darkgray; */
+    margin: 0;
 }
 
 .right img {
-  height: auto;
-  max-width: 100%;
-  border-radius: 3.5em;
-  border: .2em solid dodgerblue;
-  margin: 0;
+    height: auto;
+    max-width: 100%;
+    border-radius: 3.5em;
+    /* border: .2em solid dodgerblue; */
+    margin: 0;
 }
 
 .leftcredit {
-  display: inline-block;
-  position: relative;
-  left: 0;
-  text-align: left;
-  color: darkgrey;
-  /* text-transform: lowercase; */
+    display: inline-block;
+    position: relative;
+    left: 0;
+    text-align: left;
+    color: darkgrey;
+    /* text-transform: lowercase; */
 }
 
 .rightcredit {
-  margin-left: 32%;
-  display: inline-block;
-  color: dodgerblue;
+    display: inline-block;
+    color: dodgerblue;
+    position: absolute;
+    left: 30%;
 }
 
 .grey {
-  color: darkgray;
+    color: darkgray;
 }
 
 .homecredit {
-  position: fixed;
-  left: 2em;
-  bottom: 2em;
-  color: darkgrey;
+    position: fixed;
+    left: 2em;
+    bottom: 2em;
+    color: darkgrey;
+}
+
+#dots {
+    width: 2em;
+    padding-top: .5em;
+    padding-bottom: 2em;
+    margin-left: 0;
 }
 
 a.grey:link {
-  color: darkgray;
+    color: darkgray;
 }
 
 a.grey:visited {
-  color: darkgray;
+    color: darkgray;
 }
 
 /* unvisited link */
 a:link {
-  color: black;
-  text-decoration: none;
+    color: black;
+    text-decoration: none;
 }
 
 /* visited link */
 a:visited {
-  color: black;
+    color: black;
 }
 
 /* mouse over link */
 a:hover {
-  color: blue;
+    color: blue;
 }
 
 /* selected link */
 a:active {
-  color: blue;
+    color: blue;
 }
 
 input[type=submit] {
-  margin: 0;
-  border: black .1em solid;
-  border-radius: 5em;
-  padding-left: 1.2em;
-  padding-right: 1.2em;
-  padding-top: .5em;
-  padding-bottom: .5em;
-  font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica, arial, sans-serif;
-  font-size: 18px;
-  line-height: 1.4em;
-  letter-spacing: .1em;
-  background: black;
-  color: white;
-  /* text-transform: lowercase; */
+    margin: 0;
+    border: black .1em solid;
+    border-radius: 5em;
+    padding-left: 1.2em;
+    padding-right: 1.2em;
+    padding-top: .5em;
+    padding-bottom: .5em;
+    font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica, arial, sans-serif;
+    font-size: 18px;
+    line-height: 1.4em;
+    letter-spacing: .1em;
+    background: black;
+    color: white;
+    /* text-transform: lowercase; */
 }
 
 input[type=submit]:hover {
-  border: blue .1em solid;
-  background: blue;
-  color: white;
+    border: blue .1em solid;
+    background: blue;
+    color: white;
 }
 
 input[type=text] {
-  margin: 0;
-  border: black .1em solid;
-  border-radius: 5em;
-  padding-left: 1.2em;
-  padding-right: 1.2em;
-  padding-top: .5em;
-  padding-bottom: .5em;
-  font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica, arial, sans-serif;
-  font-size: 18px;
-  line-height: 1.4em;
-  letter-spacing: .1em;
-  background: white;
-  width: 10em;
+    margin: 0;
+    border: black .1em solid;
+    border-radius: 5em;
+    padding-left: 1.2em;
+    padding-right: 1.2em;
+    padding-top: .5em;
+    padding-bottom: .5em;
+    font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica, arial, sans-serif;
+    font-size: 18px;
+    line-height: 1.4em;
+    letter-spacing: .1em;
+    background: white;
+    width: 10em;
 }
 
 @media only screen and (max-width: 768px) {
+
     .homebox {
-      padding-top: 1em;
-      padding-left: 1em;
-      width: 100%;
+        padding-top: 1em;
+        padding-left: 1em;
+        width: 90%;
     }
 
     .textbox {
-      padding-top: 0;
-      position: relative;
-      left: 1em;
-      top: 2em;
-      width: 100%;
-      height: auto;
+        position: absolute;
+        left: 1em;
+        top: 0;
+        width: 90%;
     }
 
     .creditbar {
-        padding-top: 1em;
-        padding-bottom: 0;
-        padding-left: 1em;
+        padding-top: 0;
+        padding-bottom: 2em;
         position: relative;
+        top: 0;
         z-index: 2;
-        width: 98%;
-        height: .5em;
-        background: white;
+        width: 100%;
+        height: 1em;
+        background: -webkit-linear-gradient(rgba(255, 255, 255, 1) 0%,
+                rgba(255, 255, 255, 0) 100%);
+        background-image: -moz-linear-gradient(rgba(255, 255, 255, 1) 0%,
+                rgba(255, 255, 255, 0) 100%);
+        background-image: -o-linear-gradient(rgba(255, 255, 255, 1) 0%,
+                rgba(255, 255, 255, 0) 100%);
+        background-image: linear-gradient(rgba(255, 255, 255, 1) 0%,
+                rgba(255, 255, 255, 0) 100%);
+        background-image: -ms-linear-gradient(rgba(255, 255, 255, 1) 0%,
+                rgba(255, 255, 255, 0) 100%);
     }
 
-    .homecredit {
-      position: fixed;
-      left: 1em;
-      bottom: 1em;
-      color: grey;
+    .rightcredit {
+        display: inline-block;
+        color: dodgerblue;
+        position: absolute;
+        left: 45%;
     }
 
-  }
+    .right {
+        height: auto;
+        width: 50%;
+        padding-top: .5em;
+        padding-bottom: .5em;
+        display: block;
+        text-align: left;
+        margin-left: 45%;
+        color: dodgerblue;
+    }
+
+}
