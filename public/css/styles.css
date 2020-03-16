@@ -21,7 +21,7 @@ body, p {
 }
 
 .textbox {
-    padding-top: 1.5em;
+    padding-top: 2.5em;
     position: absolute;
     left: 2em;
     top: 2em;
@@ -29,7 +29,7 @@ body, p {
 }
 
 .creditbar {
-    padding-top: 1em;
+    padding-top: 2em;
     padding-bottom: 2em;
     position: fixed;
     top: 0;
@@ -72,7 +72,7 @@ body, p {
 
 .left img {
     height: auto;
-    max-width: 50%;
+    max-width: 100%;
     border-radius: 3.5em;
     /* border: .2em solid darkgray; */
     margin: 0;
@@ -92,7 +92,6 @@ body, p {
     left: 0;
     text-align: left;
     color: darkgrey;
-    /* text-transform: lowercase; */
 }
 
 .rightcredit {
@@ -107,6 +106,21 @@ body, p {
 }
 
 .homecredit {
+    position: fixed;
+    left: 2em;
+    bottom: 2em;
+    color: darkgrey;
+}
+
+.homecredit2 {
+    position: absolute;
+    top: 2em;
+    right: 2em;
+    color: darkgrey;
+    z-index: 3;
+}
+
+.homecredit3 {
     position: fixed;
     left: 2em;
     bottom: 2em;
@@ -141,12 +155,12 @@ a:visited {
 
 /* mouse over link */
 a:hover {
-    color: blue;
+    color: dodgerblue;
 }
 
 /* selected link */
 a:active {
-    color: blue;
+    color: dodgerblue;
 }
 
 input[type=submit] {
@@ -163,12 +177,12 @@ input[type=submit] {
     letter-spacing: .1em;
     background: black;
     color: white;
-    /* text-transform: lowercase; */
+    text-transform: lowercase;
 }
 
 input[type=submit]:hover {
-    border: blue .1em solid;
-    background: blue;
+    border: dodgerblue .1em solid;
+    background: dodgerblue;
     color: white;
 }
 
@@ -197,6 +211,7 @@ input[type=text] {
     }
 
     .textbox {
+        padding-top: 1em;
         position: absolute;
         left: 1em;
         top: 0;
@@ -239,6 +254,31 @@ input[type=text] {
         text-align: left;
         margin-left: 45%;
         color: dodgerblue;
+    }
+
+    .homecredit {
+        position: relative;
+        left: 0;
+        color: darkgrey;
+    }
+
+    .homecredit2 {
+        position: absolute;
+        top: 1em;
+        right: 2em;
+        color: darkgrey;
+        z-index: 3;
+    }
+
+    .homecredit3 {
+        position: fixed;
+        left: 1em;
+        bottom: 1em;
+        color: darkgrey;
+    }
+
+    input[type=text] {
+        margin-top: .5em;
     }
 
 }
