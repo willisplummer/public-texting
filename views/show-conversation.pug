@@ -5,8 +5,17 @@ html
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
     link(rel='stylesheet', href='/css/styles.css')
     link(rel='icon', type='image/png', href='/assets/favicon-bubble.png')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+    script.
+      $(document).ready(function () {
+      $('html, body').animate({
+      scrollTop: $('#end').offset().top
+      }, 'slow');
+      });
 
   body
+   .homecredit2
+     a.grey(href='javascript:history.back()') ←
    .textbox
      .creditbar
        .leftcredit #{participants[0]}
@@ -21,15 +30,9 @@ html
                li(class=classname) #{msg.body}
      br
      img#dots(src='/assets/dots.gif')
+     br
      p#end
     
-   .homecredit2
-     a.grey(href='javascript:history.back()') ←
+   
      
-   script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
-     script.
-       $(document).ready(function () {
-       $('html, body').animate({
-       scrollTop: $('#end').offset().top
-       }, 'slow');
-       });
+   
