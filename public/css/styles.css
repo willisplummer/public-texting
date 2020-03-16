@@ -30,7 +30,7 @@ body, p {
 
 .creditbar {
     padding-top: 2em;
-    padding-bottom: 2em;
+    padding-bottom: 3em;
     position: fixed;
     top: 0;
     z-index: 2;

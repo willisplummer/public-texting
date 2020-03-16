@@ -5,32 +5,33 @@ html
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
     link(rel='stylesheet', href='/css/styles.css')
     link(rel='icon', type='image/png', href='/assets/favicon-bubble.png')
-  .homebox
-    p  → start a new public conversation over text
-    br
-    p this is an experiment in publishing. your conversation will be public on the web and be updated live as you go. think of texting as writing... fill in the blanks below to start texting with someone.
-    br
-    form(action='/conversations', method='POST', target='blank')
-      p
-        | first user name: 
-        input(type='text', name='first_user_name', value='', placeholder='your name')
-        br
-        br
-        | first user's phone number: 
-        input(type='text', name='first_user_phone_number', value='', placeholder='+11234567890')
-        br
-        br
-        | second user name: 
-        input(type='text', name='second_user_name', value='', placeholder='their name')
-        br
-        br
-        | second user's phone number: 
-        input(type='text', name='second_user_phone_number', value='', placeholder='+11234567890')
-        br
-        br
-        input(type='submit', value='Submit')
-    br
-    br
-    br
-    .homecredit
-     a.grey(href='javascript:history.back()') back
+  body
+   .homebox
+     p  → start a new public conversation over text
+     br
+     p this is an experiment in publishing. your conversation will be public on the web and be updated live as you go. think of texting as writing... fill in the blanks below to start texting with someone.
+     br
+     form(action='/conversations', method='POST', target='blank')
+       p
+         | first user name: 
+         input(type='text', name='first_user_name', value='', placeholder='your name')
+         br
+         br
+         | first user's phone number: 
+         input(type='text', name='first_user_phone_number', value='', placeholder='+11234567890')
+         br
+         br
+         | second user name: 
+         input(type='text', name='second_user_name', value='', placeholder='their name')
+         br
+         br
+         | second user's phone number: 
+         input(type='text', name='second_user_phone_number', value='', placeholder='+11234567890')
+         br
+         br
+         input(type='submit', value='Submit')
+     br
+     br
+     br
+     .homecredit
+      a.grey(href='javascript:history.back()') back
