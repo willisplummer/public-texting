@@ -51,8 +51,8 @@ body, p {
 .left {
     height: auto;
     width: 100%;
-    padding-top: .5em;
-    padding-bottom: .5em;
+    padding-top: 0;
+    padding-bottom: 1em;
     display: block;
     text-align: left;
     margin-left: 0;
@@ -62,28 +62,28 @@ body, p {
 .right {
     height: auto;
     width: 50%;
-    padding-top: .5em;
-    padding-bottom: .5em;
+    padding-top: 0;
+    padding-bottom: 1em;
     display: block;
     text-align: left;
     margin-left: 50%;
     color: dodgerblue;
 }
 
-.left img {
+img {
     height: auto;
     max-width: 100%;
     border-radius: 3.5em;
-    /* border: .2em solid darkgray; */
     margin: 0;
 }
 
+.left img {
+    /* border: .2em solid darkgray; */
+}
+
 .right img {
-    height: auto;
-    max-width: 100%;
-    border-radius: 3.5em;
+    border-radius: 2.5em;
     /* border: .2em solid dodgerblue; */
-    margin: 0;
 }
 
 .leftcredit {
@@ -132,6 +132,30 @@ body, p {
     padding-top: .5em;
     padding-bottom: 2em;
     margin-left: 0;
+}
+
+.stamp {
+    height: auto;
+    font-size: .75em;
+    display: inline-block;
+    width: 100%;
+    /* padding-top: .1em;
+    padding-bottom: .1em;
+    padding-left: 1em;
+    padding-right: 1em; */
+    text-align: left;
+    border-radius: 4em;
+    color: black;
+    padding-bottom: 0.1em;
+}
+
+.right.stamp {
+    margin-left: 50%;
+}
+
+.left.stamp {
+    margin-left: 0;
+
 }
 
 a.grey:link {
@@ -279,6 +303,65 @@ input[type=text] {
 
     input[type=text] {
         margin-top: .5em;
+    }
+
+}
+
+
+@media print {
+
+    .homecredit2, .homecredit3 {
+        display: none;
+    }
+
+    .textbox {
+        padding-top: 0;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+    }
+
+    .rightcredit {
+        color: black;
+        left: 50%;
+    }
+
+    .stamp {
+        color: darkgray;
+    }
+
+    .creditbar {
+        padding-top: 0;
+        padding-bottom: 3em;
+        position: relative;
+        top: 0;
+        z-index: 1;
+        width: 100%;
+        height: 1em;
+        background: transparent;
+    }
+
+    .right,
+    .left,
+    .leftcredit  {
+        color: black;
+    }
+
+    img {
+        width: 45%;
+        -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+        filter: grayscale(100%);
+    }
+
+    .left img {
+        border-radius: 0;
+        /* border: .2em solid darkgray; */
+    }
+
+    .right img {
+        border-radius: 0;
+        /* border: .2em solid dodgerblue; */
     }
 
 }
