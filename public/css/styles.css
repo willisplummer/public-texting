@@ -51,39 +51,39 @@ body, p {
 .left {
     height: auto;
     width: 100%;
-    padding-top: .5em;
-    padding-bottom: .5em;
+    padding-top: 0;
+    padding-bottom: 1em;
     display: block;
     text-align: left;
     margin-left: 0;
-    color: darkgray;
+    color: #333333;
 }
 
 .right {
     height: auto;
     width: 50%;
-    padding-top: .5em;
-    padding-bottom: .5em;
+    padding-top: 0;
+    padding-bottom: 1em;
     display: block;
     text-align: left;
     margin-left: 50%;
     color: dodgerblue;
 }
 
-.left img {
+img {
     height: auto;
     max-width: 100%;
     border-radius: 3.5em;
-    /* border: .2em solid darkgray; */
     margin: 0;
 }
 
+.left img {
+    /* border: .2em solid darkgray; */
+}
+
 .right img {
-    height: auto;
-    max-width: 100%;
-    border-radius: 3.5em;
+    border-radius: 2.5em;
     /* border: .2em solid dodgerblue; */
-    margin: 0;
 }
 
 .leftcredit {
@@ -91,7 +91,7 @@ body, p {
     position: relative;
     left: 0;
     text-align: left;
-    color: darkgrey;
+    color: #333333;
 }
 
 .rightcredit {
@@ -109,14 +109,14 @@ body, p {
     position: fixed;
     left: 2em;
     bottom: 2em;
-    color: darkgrey;
+    color: #333333;
 }
 
 .homecredit2 {
     position: absolute;
     top: 2em;
     right: 2em;
-    color: darkgrey;
+    color: #333333;
     z-index: 3;
 }
 
@@ -124,7 +124,7 @@ body, p {
     position: fixed;
     left: 2em;
     bottom: 2em;
-    color: darkgrey;
+    color: #d3d3d3;
 }
 
 #dots {
@@ -134,23 +134,47 @@ body, p {
     margin-left: 0;
 }
 
+.stamp {
+    height: auto;
+    font-size: .75em;
+    display: inline-block;
+    width: 100%;
+    /* padding-top: .1em;
+    padding-bottom: .1em;
+    padding-left: 1em;
+    padding-right: 1em; */
+    text-align: left;
+    border-radius: 4em;
+    color: #d3d3d3;
+    padding-bottom: 0.1em;
+}
+
+.right.stamp {
+    margin-left: 50%;
+}
+
+.left.stamp {
+    margin-left: 0;
+
+}
+
 a.grey:link {
-    color: darkgray;
+    color: #d3d3d3;
 }
 
 a.grey:visited {
-    color: darkgray;
+    color: #d3d3d3;
 }
 
 /* unvisited link */
 a:link {
-    color: black;
+    color: #333333;
     text-decoration: none;
 }
 
 /* visited link */
 a:visited {
-    color: black;
+    color: #333333;
 }
 
 /* mouse over link */
@@ -165,7 +189,7 @@ a:active {
 
 input[type=submit] {
     margin: 0;
-    border: black .1em solid;
+    border: #333333 .1em solid;
     border-radius: 5em;
     padding-left: 1.2em;
     padding-right: 1.2em;
@@ -175,7 +199,7 @@ input[type=submit] {
     font-size: 18px;
     line-height: 1.4em;
     letter-spacing: .1em;
-    background: black;
+    background: #333333;
     color: white;
     text-transform: lowercase;
 }
@@ -188,7 +212,7 @@ input[type=submit]:hover {
 
 input[type=text] {
     margin: 0;
-    border: black .1em solid;
+    border: #333333 .1em solid;
     border-radius: 5em;
     padding-left: 1.2em;
     padding-right: 1.2em;
@@ -199,7 +223,7 @@ input[type=text] {
     line-height: 1.4em;
     letter-spacing: .1em;
     background: white;
-    width: 10em;
+    width: 10.25em;
 }
 
 @media only screen and (max-width: 768px) {
@@ -245,6 +269,11 @@ input[type=text] {
         left: 45%;
     }
 
+    .right.stamp {
+        margin-left: 45%;
+        color: #d3d3d3;
+    }
+
     .right {
         height: auto;
         width: 50%;
@@ -259,14 +288,14 @@ input[type=text] {
     .homecredit {
         position: relative;
         left: 0;
-        color: darkgrey;
+        color: #d3d3d3;
     }
 
     .homecredit2 {
         position: absolute;
         top: 1em;
         right: 2em;
-        color: darkgrey;
+        color: #d3d3d3;
         z-index: 3;
     }
 
@@ -274,11 +303,86 @@ input[type=text] {
         position: fixed;
         left: 1em;
         bottom: 1em;
-        color: darkgrey;
+        color: #d3d3d3;
     }
 
     input[type=text] {
         margin-top: .5em;
+    }
+
+}
+
+
+@media print {
+
+    @page {
+      size: letter landscape;
+    }
+
+    .homecredit2, .homecredit3 {
+        display: none;
+    }
+
+    /* .stamp,
+    .right.stamp,
+    .left.stamp {
+        display: none;
+    } */
+
+    .textbox {
+        padding-top: 0;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+    }
+
+    .rightcredit {
+        color: #333333;
+        left: 50%;
+    }
+
+    .leftcredit {
+        color: #333333;
+    }
+
+    .creditbar {
+        padding-top: 0;
+        padding-bottom: 3em;
+        position: relative;
+        top: 0;
+        z-index: 1;
+        width: 100%;
+        height: 1em;
+        background: transparent;
+    }
+
+    .right,
+    .left,
+    .leftcredit  {
+        color: #333333;
+    }
+
+    .right {
+        margin-left: 50%;
+    }
+
+    img {
+        width: 20%;
+        -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+        filter: grayscale(100%);
+    }
+
+    .left img {
+        border-radius: 0;
+    }
+
+    .right img {
+        border-radius: 0;
+    }
+
+    #dots {
+        display: none;
     }
 
 }

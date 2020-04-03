@@ -23,16 +23,18 @@ html
      ul
        each msg in messages
          - var classname = participants[0] === msg.sender_name ? 'left' : 'right'
+             span(class=classname).stamp #{msg.created_at}
+             
              if (!!msg.media_type)
                li(class=classname)
                  img(src=msg.media_url)
              else
                li(class=classname) #{msg.body}
+               
+               
+             
      br
      img#dots(src='/assets/dots.gif')
      br
      p#end
-    
-   
-     
-   
+         
