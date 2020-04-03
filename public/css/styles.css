@@ -56,7 +56,7 @@ body, p {
     display: block;
     text-align: left;
     margin-left: 0;
-    color: darkgray;
+    color: #333333;
 }
 
 .right {
@@ -91,7 +91,7 @@ img {
     position: relative;
     left: 0;
     text-align: left;
-    color: darkgrey;
+    color: #333333;
 }
 
 .rightcredit {
@@ -109,14 +109,14 @@ img {
     position: fixed;
     left: 2em;
     bottom: 2em;
-    color: darkgrey;
+    color: #333333;
 }
 
 .homecredit2 {
     position: absolute;
     top: 2em;
     right: 2em;
-    color: darkgrey;
+    color: #333333;
     z-index: 3;
 }
 
@@ -124,7 +124,7 @@ img {
     position: fixed;
     left: 2em;
     bottom: 2em;
-    color: darkgrey;
+    color: #d3d3d3;
 }
 
 #dots {
@@ -145,7 +145,7 @@ img {
     padding-right: 1em; */
     text-align: left;
     border-radius: 4em;
-    color: black;
+    color: #d3d3d3;
     padding-bottom: 0.1em;
 }
 
@@ -159,22 +159,22 @@ img {
 }
 
 a.grey:link {
-    color: darkgray;
+    color: #d3d3d3;
 }
 
 a.grey:visited {
-    color: darkgray;
+    color: #d3d3d3;
 }
 
 /* unvisited link */
 a:link {
-    color: black;
+    color: #333333;
     text-decoration: none;
 }
 
 /* visited link */
 a:visited {
-    color: black;
+    color: #333333;
 }
 
 /* mouse over link */
@@ -189,7 +189,7 @@ a:active {
 
 input[type=submit] {
     margin: 0;
-    border: black .1em solid;
+    border: #333333 .1em solid;
     border-radius: 5em;
     padding-left: 1.2em;
     padding-right: 1.2em;
@@ -199,7 +199,7 @@ input[type=submit] {
     font-size: 18px;
     line-height: 1.4em;
     letter-spacing: .1em;
-    background: black;
+    background: #333333;
     color: white;
     text-transform: lowercase;
 }
@@ -212,7 +212,7 @@ input[type=submit]:hover {
 
 input[type=text] {
     margin: 0;
-    border: black .1em solid;
+    border: #333333 .1em solid;
     border-radius: 5em;
     padding-left: 1.2em;
     padding-right: 1.2em;
@@ -223,7 +223,7 @@ input[type=text] {
     line-height: 1.4em;
     letter-spacing: .1em;
     background: white;
-    width: 10em;
+    width: 10.25em;
 }
 
 @media only screen and (max-width: 768px) {
@@ -269,6 +269,11 @@ input[type=text] {
         left: 45%;
     }
 
+    .right.stamp {
+        margin-left: 45%;
+        color: #d3d3d3;
+    }
+
     .right {
         height: auto;
         width: 50%;
@@ -283,14 +288,14 @@ input[type=text] {
     .homecredit {
         position: relative;
         left: 0;
-        color: darkgrey;
+        color: #d3d3d3;
     }
 
     .homecredit2 {
         position: absolute;
         top: 1em;
         right: 2em;
-        color: darkgrey;
+        color: #d3d3d3;
         z-index: 3;
     }
 
@@ -298,7 +303,7 @@ input[type=text] {
         position: fixed;
         left: 1em;
         bottom: 1em;
-        color: darkgrey;
+        color: #d3d3d3;
     }
 
     input[type=text] {
@@ -310,9 +315,19 @@ input[type=text] {
 
 @media print {
 
+    @page {
+      size: letter landscape;
+    }
+
     .homecredit2, .homecredit3 {
         display: none;
     }
+
+    /* .stamp,
+    .right.stamp,
+    .left.stamp {
+        display: none;
+    } */
 
     .textbox {
         padding-top: 0;
@@ -323,12 +338,12 @@ input[type=text] {
     }
 
     .rightcredit {
-        color: black;
+        color: #333333;
         left: 50%;
     }
 
-    .stamp {
-        color: darkgray;
+    .leftcredit {
+        color: #333333;
     }
 
     .creditbar {
@@ -345,23 +360,29 @@ input[type=text] {
     .right,
     .left,
     .leftcredit  {
-        color: black;
+        color: #333333;
+    }
+
+    .right {
+        margin-left: 50%;
     }
 
     img {
-        width: 45%;
+        width: 20%;
         -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
         filter: grayscale(100%);
     }
 
     .left img {
         border-radius: 0;
-        /* border: .2em solid darkgray; */
     }
 
     .right img {
         border-radius: 0;
-        /* border: .2em solid dodgerblue; */
+    }
+
+    #dots {
+        display: none;
     }
 
 }
