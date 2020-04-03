@@ -338,46 +338,30 @@ input[type=text] {
     }
 
     .rightcredit {
-        color: #333333;
         left: 50%;
     }
 
-    .leftcredit {
-        color: #333333;
+    .creditbar {
+        position: relative;
+        background: transparent;
+        padding-top: 0;
     }
 
-    .creditbar {
-        padding-top: 0;
-        padding-bottom: 3em;
-        position: relative;
-        top: 0;
-        z-index: 1;
-        width: 100%;
-        height: 1em;
-        background: transparent;
+    .right {
+        width: 45%;
     }
 
     .right,
     .left,
-    .leftcredit  {
-        color: #333333;
-    }
-
-    .right {
-        margin-left: 50%;
+    .leftcredit,
+    .rightcredit  {
+        color: black;
     }
 
     img {
-        width: 20%;
-        -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+        width: 100px;
+        -webkit-filter: grayscale(100%);
         filter: grayscale(100%);
-    }
-
-    .left img {
-        border-radius: 0;
-    }
-
-    .right img {
         border-radius: 0;
     }
 
