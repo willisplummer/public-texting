@@ -349,6 +349,10 @@ input[type=text] {
         left: 50%;
     }
 
+    .left {
+        width: 50%;
+    }
+
     .creditbar {
         position: relative;
         background: transparent;
@@ -356,7 +360,7 @@ input[type=text] {
     }
 
     .right {
-        width: 45%;
+        width: 50%;
     }
 
     .right,
