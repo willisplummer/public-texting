@@ -294,7 +294,7 @@ input[type=text] {
     .homecredit2 {
         position: absolute;
         top: 1em;
-        right: 2em;
+        right: 1em;
         color: #d3d3d3;
         z-index: 3;
     }
@@ -310,6 +310,14 @@ input[type=text] {
         margin-top: .5em;
     }
 
+    img {
+        border-radius: 2.5em;
+    }
+
+    .right img  {
+        border-radius: 1.5em;
+    }
+
 }
 
 
@@ -323,11 +331,11 @@ input[type=text] {
         display: none;
     }
 
-    /* .stamp,
+    .stamp,
     .right.stamp,
     .left.stamp {
-        display: none;
-    } */
+        opacity: .5;
+    }
 
     .textbox {
         padding-top: 0;
@@ -362,6 +370,10 @@ input[type=text] {
         width: 100px;
         -webkit-filter: grayscale(100%);
         filter: grayscale(100%);
+        border-radius: 0;
+    }
+
+    .right img  {
         border-radius: 0;
     }
 
