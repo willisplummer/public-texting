@@ -1,8 +1,8 @@
 const express = require('express')
 const bodyParser = require("body-parser");
 const dayjs = require('dayjs');
+const anchorme = require('anchorme').default;
 const { pool } = require('./config')
-
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 
@@ -172,7 +172,7 @@ app.get('/conversations/:conversationId', async (req, res) => {
   const conversationId = req.params.conversationId
   const messages = await getMessages(conversationId)
   const formattedDateMessages = messages.map(msg =>
-    ({ ...msg, created_at: dayjs(msg.created_at).format('ddd, MMM D, h:mm A') })
+    ({ ...msg, body: anchorme(msg.body), created_at: dayjs(msg.created_at).format('ddd, MMM D, h:mm A') })
   )
 
   const participants = await getConversationParticipants(conversationId)
