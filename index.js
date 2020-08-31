@@ -1,8 +1,8 @@
 const express = require('express')
 const bodyParser = require("body-parser");
 const dayjs = require('dayjs');
+const anchorme = require('anchorme').default;
 const { pool } = require('./config')
-
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 
@@ -168,11 +168,41 @@ app.get('/conversations/new', (req, res) => {
   res.render('new-conversation')
 })
 
+const createChunkedMessageBody = (msgBody) => {
+  linkSegments = anchorme.list(msgBody)
+
+  if (linkSegments.length === 0) {
+    return [{ body: msgBody, type: 'text' }]
+  }
+
+  const chunks = [];
+
+  // text before first link
+  firstLinkStart = linkSegments[0].start;
+  if (firstLinkStart > 0) {
+    chunks.push({ type: 'text', body: msgBody.substring(0, firstLinkStart) })
+  }
+
+  linkSegments.forEach((segment, index) => {
+    chunks.push({type: 'link', body: segment.string})
+    const nextSegment = linkSegments[index + 1]
+    if (nextSegment) {
+      chunks.push({type: 'text', body: msgBody.substring(segment.end, nextSegment.start)})
+    } else {
+      chunks.push({type: 'text', body: msgBody.substring(segment.end)})
+    }
+  })
+
+  return chunks
+}
+
 app.get('/conversations/:conversationId', async (req, res) => {
   const conversationId = req.params.conversationId
   const messages = await getMessages(conversationId)
+
+
   const formattedDateMessages = messages.map(msg =>
-    ({ ...msg, created_at: dayjs(msg.created_at).format('ddd, MMM D, h:mm A') })
+    ({ ...msg, body: createChunkedMessageBody(msg.body), created_at: dayjs(msg.created_at).format('ddd, MMM D, h:mm A') })
   )
 
   const participants = await getConversationParticipants(conversationId)
