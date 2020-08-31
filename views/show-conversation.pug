@@ -24,7 +24,12 @@ html
                li(class=classname)
                  img(src=msg.media_url)
              else
-               li(class=classname) !{msg.body}
+               li(class=classname)
+                each msgpart in msg.body
+                 if(msgpart.type === 'text')
+                  span #{msgpart.body}
+                 else
+                  a(href=msgpart.body) #{msgpart.body}
                
                
              

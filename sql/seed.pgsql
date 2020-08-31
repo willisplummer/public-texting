@@ -11,6 +11,12 @@ INSERT INTO messages (conversation_id, sender_id, body)
 VALUES (1, 1, 'this is a message willisplummer.com');
 
 INSERT INTO messages (conversation_id, sender_id, body)
+VALUES (1, 1, 'willisplummer.com this is a message');
+
+INSERT INTO messages (conversation_id, sender_id, body)
+VALUES (1, 1, 'this willisplummer.com  is a message');
+
+INSERT INTO messages (conversation_id, sender_id, body)
 VALUES (1, 1, 'this is another message');
 
 INSERT INTO messages (conversation_id, sender_id, body)
