@@ -140,7 +140,7 @@ app.post('/messages', async (req, res) => {
           mediaType
         )
 
-        console.log(['mms message body', msgBody);
+        console.log('mms message body', msgBody);
 
         // proxy msg to other conversation participant
         twilioClient.messages.create({
