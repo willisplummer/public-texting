@@ -12,6 +12,7 @@ body, p {
     line-height: 1.4em;
     letter-spacing: .05em;
     background: white;
+    outline: none;
 }
 
 .homebox {
@@ -202,12 +203,14 @@ input[type=submit] {
     background: #333333;
     color: white;
     text-transform: lowercase;
+    outline: none;
 }
 
 input[type=submit]:hover {
     border: dodgerblue .1em solid;
     background: dodgerblue;
     color: white;
+    outline: none;
 }
 
 input[type=text] {
@@ -224,6 +227,7 @@ input[type=text] {
     letter-spacing: .1em;
     background: white;
     width: 10.25em;
+    outline: none;
 }
 
 @media only screen and (max-width: 768px) {
@@ -308,6 +312,7 @@ input[type=text] {
 
     input[type=text] {
         margin-top: .5em;
+        outline: none;
     }
 
     img {
