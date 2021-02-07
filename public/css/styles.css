@@ -125,7 +125,10 @@ img {
 .homecredit3 {
     position: absolute;
     left: 2em;
-    bottom: 2em;}
+    bottom: 2em;
+    color: #d3d3d3;
+    background-color: transparent;
+}
 
 #dots {
     width: 2em;
