@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    outline: none;
 }
 
 body, p {
@@ -122,7 +123,7 @@ img {
 }
 
 .homecredit3 {
-    position: fixed;
+    position: absolute;
     left: 2em;
     bottom: 2em;
     color: #d3d3d3;
@@ -226,16 +227,15 @@ input[type=text] {
     line-height: 1.4em;
     letter-spacing: .1em;
     background: white;
-    width: 10.25em;
+    width: auto;
     outline: none;
 }
 
 @media only screen and (max-width: 768px) {
 
     .homebox {
-        padding-top: 1em;
-        padding-left: 1em;
-        width: 90%;
+        padding: 1em;
+        width: 100%;
     }
 
     .textbox {
@@ -243,7 +243,7 @@ input[type=text] {
         position: absolute;
         left: 1em;
         top: 0;
-        width: 90%;
+        width: 100%;
     }
 
     .creditbar {
@@ -304,15 +304,16 @@ input[type=text] {
     }
 
     .homecredit3 {
-        position: fixed;
+        position: absolute;
         left: 1em;
         bottom: 1em;
         color: #d3d3d3;
     }
 
     input[type=text] {
-        margin-top: .5em;
+        margin-top: 1em;
         outline: none;
+        width: 100%;
     }
 
     img {
@@ -325,7 +326,7 @@ input[type=text] {
 
 }
 
-
+/* 
 @media print {
 
     @page {
@@ -390,4 +391,4 @@ input[type=text] {
         display: none;
     }
 
-}
+} */
